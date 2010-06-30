@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "metropoli"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Rails engine used to relate your models to a city database}
+    # gem.description = %Q{TODO: longer description of your gem}
     gem.email = "adrian@innku.com"
     gem.homepage = "http://github.com/adriancuadros/metropoli"
     gem.authors = ["Adrian Cuadros"]

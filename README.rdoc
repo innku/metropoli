@@ -1,6 +1,6 @@
 = metropoli
 
-Description goes here.
+Rails engine used to relate your models to a city database
 
 == Note on Patches/Pull Requests
  
