@@ -22,9 +22,12 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "lib/app/models/city.rb",
+     "app/models/city.rb",
+     "lib/generators/metropoli_generator.rb",
+     "lib/generators/templates/migrate/create_metropoli.rb",
      "lib/metropoli.rb",
      "lib/metropoli/engine.rb",
+     "metropoli.gemspec",
      "test/helper.rb",
      "test/test_metropoli.rb"
   ]
