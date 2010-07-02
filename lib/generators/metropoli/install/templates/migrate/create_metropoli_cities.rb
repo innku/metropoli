@@ -1,4 +1,4 @@
-class CreateMetropoliCountries < ActiveRecord::Migration
+class CreateMetropoliCities < ActiveRecord::Migration
   def self.up 
     create_table :cities do |t|
       t.integer :state_id
