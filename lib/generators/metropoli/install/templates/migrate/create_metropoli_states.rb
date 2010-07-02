@@ -5,15 +5,11 @@ class CreateMetropoliStates < ActiveRecord::Migration
       t.integer :country_id
       t.string  :name
       t.string  :abbr
-      t.string  :abbr2
-      t.string  :abbr3
     end
     
     add_index :states, :country_id
     add_index :states, :name
     add_index :states, :abbr
-    add_index :states, :abbr2
-    add_index :states, :abbr3
     
   end
   

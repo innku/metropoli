@@ -4,9 +4,8 @@ module Metropoli
     has_many    :cities
   
     def self.like(name)
-      where("states.name #{Metropoli::LIKE} ? OR states.abbr #{Metropoli::LIKE} ? OR 
-             states.abbr2 #{Metropoli::LIKE} ? OR states.abbr3 #{Metropoli::LIKE} ?",
-            "%#{name}%","%#{name}%","%#{name}%","%#{name}%")
+      where("states.name #{Metropoli::LIKE} ? OR states.abbr #{Metropoli::LIKE} ?",
+            "%#{name}%","%#{name}%",)
     end
 
   end
