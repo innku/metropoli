@@ -5,13 +5,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "metropoli"
-    gem.summary = %Q{Rails engine used to relate your models to a city database}
-    # gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Rails engine used to relate your models to city database}
+    gem.description = %Q{Rails engine used to relate your models to a city database}
     gem.email = "adrian@innku.com"
     gem.homepage = "http://github.com/adriancuadros/metropoli"
     gem.authors = ["Adrian Cuadros"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_dependency("meta_where","~> 0.5.1")
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

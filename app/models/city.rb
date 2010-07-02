@@ -1,25 +1,9 @@
 class City < ActiveRecord::Base  
   belongs_to  :state
   
-  def find_for_autocomplete(query)
-    city, state, country = params[:q].split(',').map(&:strip) 
-    results = City.includes(:state => :country)
-    results = results.city_like(city)
-  end
-  
-  def self.city_like(city)
-    where("cities.name #{self.like_statement} ? OR cities.alt_name #{self.like_statement} ?",
-          "%#{city}%","%#{city}%")
-  end
-  
-  protected
-  
-  def self.like_statement
-    if (City.connection.adapter_name.downcase.include?('postgres'))
-      return 'ILIKE'
-    else
-      return 'LIKE'
-    end
+  def self.like(name)
+    where("cities.name #{LIKE} ? OR cities.alt_name #{LIKE} ?",
+          "%#{name}%","%#{name}%")
   end
   
 end
