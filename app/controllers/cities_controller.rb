@@ -1,7 +1,9 @@
-class CitiesController < ApplicationController
+module Metropoli
+  class CitiesController < ApplicationController
   
-  def index
-    
+    def index
+      responds
+    end
+  
   end
-  
 end
