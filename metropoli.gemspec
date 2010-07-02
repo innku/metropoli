@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
     ".bundle/config",
      ".document",
      ".gitignore",
-     "Gemfile",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -29,7 +28,7 @@ Gem::Specification.new do |s|
      "app/models/city.rb",
      "app/models/country.rb",
      "app/models/state.rb",
-     "config/initializers/database_like.rb",
+     "config/initializers/set_database_like.rb",
      "lib/generators/metropoli_generator.rb",
      "lib/generators/templates/migrate/create_metropoli.rb",
      "lib/metropoli.rb",
@@ -53,12 +52,9 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<meta_where>, ["~> 0.5.1"])
     else
-      s.add_dependency(%q<meta_where>, ["~> 0.5.1"])
     end
   else
-    s.add_dependency(%q<meta_where>, ["~> 0.5.1"])
   end
 end
 
