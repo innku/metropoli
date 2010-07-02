@@ -1,5 +1,5 @@
 namespace :metropoli do
-  task :seed do |environment|
-    puts "Hi"
+  task :seed => :environment do
+    puts "Hi, im a rake task"
   end
 end

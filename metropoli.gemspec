@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
      "lib/generators/metropoli_generator.rb",
      "lib/metropoli.rb",
      "lib/metropoli/engine.rb",
+     "lib/tasks/seed.rb",
      "metropoli.gemspec",
      "test/helper.rb",
      "test/test_metropoli.rb"
