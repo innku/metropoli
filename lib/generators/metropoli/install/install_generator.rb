@@ -6,7 +6,8 @@ module Metropoli
       source_root File.expand_path('../templates',__FILE__)
       
       def self.next_migration_number(path)
-        Time.now.utc.strftime("%Y%m%d%H%M%S")
+        @seconds = @seconds.nil? ? Time.now.sec || (@seconds + 1)
+        Time.now.utc.strftime("%Y%m%d%H%M%S#{@seconds}")
       end
       
       def generate_countries
@@ -14,6 +15,7 @@ module Metropoli
       end
       
       def generate_states
+        wait 1
         migration_template 'migrate/create_metropoli_states.rb', 'db/migrate/create_metropoli_states.rb'
       end
       
