@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adrian Cuadros"]
-  s.date = %q{2010-07-01}
+  s.date = %q{2010-07-02}
   s.description = %q{Rails engine used to relate your models to a city database}
   s.email = %q{adrian@innku.com}
   s.extra_rdoc_files = [
@@ -29,8 +29,9 @@ Gem::Specification.new do |s|
      "app/models/metropoli/country.rb",
      "app/models/metropoli/state.rb",
      "config/initializers/set_database_like.rb",
+     "lib/generators/metropoli/install/install_generator.rb",
+     "lib/generators/metropoli/install/templates/migrate/create_metropoli.rb",
      "lib/generators/metropoli_generator.rb",
-     "lib/generators/templates/migrate/create_metropoli.rb",
      "lib/metropoli.rb",
      "lib/metropoli/engine.rb",
      "metropoli.gemspec",
