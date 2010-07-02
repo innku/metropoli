@@ -15,7 +15,6 @@ module Metropoli
       end
       
       def generate_states
-        wait 1
         migration_template 'migrate/create_metropoli_states.rb', 'db/migrate/create_metropoli_states.rb'
       end
       
