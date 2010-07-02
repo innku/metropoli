@@ -9,9 +9,15 @@ module Metropoli
         Time.now.utc.strftime("%Y%m%d%H%M%S")
       end
       
-      def generate_migrations
+      def generate_countries
         migration_template 'migrate/create_metropoli_countries.rb', 'db/migrate/create_metropoli_countries.rb'
+      end
+      
+      def generate_states
         migration_template 'migrate/create_metropoli_states.rb', 'db/migrate/create_metropoli_states.rb'
+      end
+      
+      def generate_cities
         migration_template 'migrate/create_metropoli_cities.rb', 'db/migrate/create_metropoli_cities.rb'
       end
       
