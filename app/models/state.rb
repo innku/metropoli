@@ -3,19 +3,9 @@ class State < ActiveRecord::Base
   has_many :cities
   
   def self.like(name)
-    where("states.name #{self.like_statement} ? OR states.abbr #{self.like_statement} ? OR 
-           states.abbr2 #{self.like_statement} ? OR states.abbr3 #{self.like_statement} ?",
+    where("states.name #{Metropoli::LIKE} ? OR states.abbr #{Metropoli::LIKE} ? OR 
+           states.abbr2 #{Metropoli::LIKE} ? OR states.abbr3 #{Metropoli::LIKE} ?",
           "%#{name}%","%#{name}%","%#{name}%","%#{name}%")
-  end
-  
-  protected
-  
-  def self.like_statement
-    if (City.connection.adapter_name.downcase.include?('postgres'))
-      return 'ILIKE'
-    else
-      return 'LIKE'
-    end
   end
   
 end

@@ -10,7 +10,6 @@ begin
     gem.email = "adrian@innku.com"
     gem.homepage = "http://github.com/adriancuadros/metropoli"
     gem.authors = ["Adrian Cuadros"]
-    gem.add_dependency("meta_where","~> 0.5.1")
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

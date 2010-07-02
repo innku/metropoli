@@ -17,7 +17,8 @@ Gem::Specification.new do |s|
      "README.rdoc"
   ]
   s.files = [
-    ".document",
+    ".bundle/config",
+     ".document",
      ".gitignore",
      "Gemfile",
      "LICENSE",
@@ -28,6 +29,7 @@ Gem::Specification.new do |s|
      "app/models/city.rb",
      "app/models/country.rb",
      "app/models/state.rb",
+     "config/initializers/database_like.rb",
      "lib/generators/metropoli_generator.rb",
      "lib/generators/templates/migrate/create_metropoli.rb",
      "lib/metropoli.rb",
