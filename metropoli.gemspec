@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
      "lib/metropoli/belongs_to_metropoli.rb",
      "lib/metropoli/engine.rb",
      "lib/metropoli/seed_helper.rb",
+     "lib/tasks/cleanup.rake",
      "lib/tasks/seed.rake",
      "metropoli.gemspec",
      "test/helper.rb",

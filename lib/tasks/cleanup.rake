@@ -1,5 +1,5 @@
 namespace :metropoli do
-  taks :cleanup => :environment do
+  task :cleanup => :environment do
     puts 'Cleaning up...'
       Metropoli::Country.destroy_all
       Metropoli::State.destroy_all
