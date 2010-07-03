@@ -7,7 +7,6 @@ module Metropoli
     
     def belongs_to_metropoli
       send :include, InstanceMethods
-      puts 'Hola'
     end
     
   end
