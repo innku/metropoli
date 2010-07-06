@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adrian Cuadros"]
-  s.date = %q{2010-07-05}
+  s.date = %q{2010-07-06}
   s.description = %q{Rails engine used to relate your models to a city database}
   s.email = %q{adrian@innku.com}
   s.extra_rdoc_files = [
@@ -34,11 +34,11 @@ Gem::Specification.new do |s|
      "lib/generators/metropoli/install/templates/migrate/create_metropoli_countries.rb",
      "lib/generators/metropoli/install/templates/migrate/create_metropoli_states.rb",
      "lib/generators/metropoli/metropoli/metropoli_generator.rb",
-     "lib/generators/metropoli/metropoli/templates/migrate/belongs_to_migration.rb",
-     "lib/generators/metropoli/metropoli/templates/migrate/has_many_migration.rb",
+     "lib/generators/metropoli/metropoli/templates/migrate/belongs_to.rb",
+     "lib/generators/metropoli/metropoli/templates/migrate/has_many.rb",
      "lib/generators/metropoli_generator.rb",
      "lib/metropoli.rb",
-     "lib/metropoli/belongs_to_metropoli.rb",
+     "lib/metropoli/association_methods.rb",
      "lib/metropoli/engine.rb",
      "lib/metropoli/seed_helper.rb",
      "lib/tasks/cleanup.rake",
