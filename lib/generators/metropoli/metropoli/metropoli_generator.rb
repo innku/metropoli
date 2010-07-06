@@ -51,6 +51,14 @@ module Metropoli
         end
       end
       
+      def metropoli_relation
+        if options.as?
+          options.as.singularize
+        else
+          metropoli_model.singularize
+        end
+      end
+      
     end
   end
 end
