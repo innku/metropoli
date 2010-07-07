@@ -2,6 +2,7 @@ module Metropoli
   module Generators
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
+      class_option  'demo_seed', :type => :boolean, :default => false
       
       source_root File.expand_path('../templates',__FILE__)
       
@@ -26,7 +27,15 @@ module Metropoli
         copy_file 'locales/en.yml', 'config/locales/metropoli.en.yml' 
       end
       
-      def readme
+      def generate_demo_seed
+        if options.demo_seed?
+          copy_file 'csv/countries.csv', 'db/csv/countries.csv' 
+          copy_file 'csv/states.csv', 'dv/csv/states.csv' 
+          copy_file 'csv/cities.csv', 'db/csv/cities.csv' 
+        end
+      end
+      
+      def show_readme
         readme 'README'
       end 
       
