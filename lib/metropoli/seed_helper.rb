@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module Metropoli
   module SeedHelper
     def migrate_from_csv(migration_class, csv_file)
