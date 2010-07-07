@@ -1,6 +1,5 @@
 module Metropoli
   module StatementHelper
-    protected
     def self.like_statement(name)
       (where_clause << where_values(name)).flatten
     end

@@ -1,11 +1,8 @@
-require 'lib/metropoli/statement_helper'
-
 module Metropoli
   class City < ActiveRecord::Base    
+    extend StatementHelper
     belongs_to  :state
     delegate    :country, :to => :state
-    
-    extend StatementHelper
     
     def self.autocomplete(string)
       city, state, country = string.split(',').map(&:strip)
