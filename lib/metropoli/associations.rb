@@ -4,9 +4,9 @@ module Metropoli
   end
   
   module Messages
-    def error(class_name, kind)
-      I18n.t(:"#{relation_name}.#{kind}", :resource_name => class_name,
-             :scope => [:metropoli, class_name], :default => kind)
+    def self.error(class_name, kind)
+      I18n.t( kind, :resource_name => class_name,
+             :scope => [:metropoli, class_name.downcase])
     end
   end 
   
@@ -38,6 +38,7 @@ module Metropoli
       
       #Validation Methods
       if args[:required]
+        validates_presence_of   relation_name
         validate do |record|
           collection = record.read_attribute(relation_collector)
           relation = record.read_attribute(relation_name)

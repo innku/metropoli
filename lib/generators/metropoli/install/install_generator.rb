@@ -27,10 +27,14 @@ module Metropoli
         copy_file 'locales/en.yml', 'config/locales/metropoli.en.yml' 
       end
       
+      def generate_initializer
+        copy_file 'initializers/metropoli.rb', 'config/initializers/metropoli.rb' 
+      end
+      
       def generate_demo_seed
         if options.include_demo?
           copy_file 'csv/countries.csv', 'db/csv/countries.csv' 
-          copy_file 'csv/states.csv', 'dv/csv/states.csv' 
+          copy_file 'csv/states.csv', 'db/csv/states.csv' 
           copy_file 'csv/cities.csv', 'db/csv/cities.csv' 
         end
       end

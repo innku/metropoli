@@ -1,8 +1,12 @@
+require 'lib/metropoli/statement_helper'
+
 module Metropoli
-  class City < ActiveRecord::Base  
+  class City < ActiveRecord::Base    
     belongs_to  :state
     delegate    :country, :to => :state
-  
+    
+    extend StatementHelper
+    
     def self.autocomplete(string)
       city, state, country = string.split(',').map(&:strip)
       results = City.like(city) unless city.nil?
@@ -17,8 +21,7 @@ module Metropoli
     end
   
     def self.like(name)
-      where("cities.name #{Metropoli::LIKE} ? OR cities.alt_name #{Metropoli::LIKE} ?",
-            "%#{name}%","%#{name}%")
+      self.where(like_statement(name))
     end
     
     def to_s
