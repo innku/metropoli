@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
      "lib/generators/metropoli/metropoli/templates/migrate/has_many.rb",
      "lib/generators/metropoli_generator.rb",
      "lib/metropoli.rb",
-     "lib/metropoli/association_methods.rb",
+     "lib/metropoli/associations.rb",
      "lib/metropoli/engine.rb",
      "lib/metropoli/seed_helper.rb",
      "lib/tasks/cleanup.rake",
