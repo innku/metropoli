@@ -1,0 +1,11 @@
+en:
+  metropoli:
+      city:
+          couldnt_find: "Couldnt find your city"
+          found_too_many: "Found too many cities"
+      state:
+          couldnt_find: "Couldnt find your state"
+          found_too_many: "Found too many states"
+      state:
+          couldnt_find: "Couldnt find your country"
+          found_too_many: "Found too many countries"

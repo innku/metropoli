@@ -21,6 +21,14 @@ module Metropoli
         end
       end
       
+      def generate_locale
+        template 'locales/en.yml', 'locales/metropoli.en.yml'
+      end
+      
+      def show_readme
+        readme "README"
+      end
+      
       private
       
       def app_table_name

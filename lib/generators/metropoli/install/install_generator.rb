@@ -22,6 +22,14 @@ module Metropoli
         migration_template 'migrate/create_metropoli_cities.rb', 'db/migrate/create_metropoli_cities.rb'
       end
       
+      def generate_locale
+        copy_file 'locales/en.yml', 'config/locales/metropoli.en.yml' 
+      end
+      
+      def readme
+        readme 'README'
+      end 
+      
     end
   end
 end

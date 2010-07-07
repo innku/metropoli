@@ -3,6 +3,13 @@ module Metropoli
     base.send :extend, ClassMethods
   end
   
+  module Messages
+    def error(class_name, kind)
+      I18n.t(:"#{relation_name}.#{kind}", :resource_name => class_name,
+             :scope => [:metropoli, class_name], :default => kind)
+    end
+  end 
+  
   module ClassMethods
     
     def belongs_to_metropoli(args = {})
@@ -27,6 +34,22 @@ module Metropoli
         metropoli_attribute = send(relation_name)
         return read_attribute("#{relation_name}_name") if read_attribute("#{relation_name}_name")
         return metropoli_attribute.to_s if metropoli_attribute
+      end
+      
+      #Validation Methods
+      if args[:required]
+        validate do |record|
+          collection = record.read_attribute(relation_collector)
+          relation = record.read_attribute(relation_name)
+          if collection
+            if (collection.size > 1 rescue nil)
+              record.errors.add(relation_name, Metropoli::Messages.error(relation_class_name, :found_too_many) )
+            end
+            if (collection.size == 0)
+              record.errors.add(relation_name, Metropoli::Messages.error(relation_class_name, :couldnt_find))
+            end
+          end
+        end
       end
       
       send :include, InstanceMethods
