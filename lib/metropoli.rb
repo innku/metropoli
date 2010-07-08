@@ -1,5 +1,14 @@
 module Metropoli
   
+  mattr_accessor  :country_class
+  @@country_class = 'Metropoli::Country'
+  
+  mattr_accessor  :state_class
+  @@state_class = 'Metropoli::State'
+  
+  mattr_accessor  :city_class
+  @@city_class = 'Metropoli::City'
+  
   mattr_accessor  :country_autocomplete_fields
   @@country_autocomplete_fields = 'name, abbr'
   

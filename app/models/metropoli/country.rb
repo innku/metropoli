@@ -1,6 +1,6 @@
 module Metropoli
   class Country < ActiveRecord::Base
-    has_many :states
+    has_many :states, :class_name => Metropoli.state_class
     extend StatementHelper
     
     def self.autocomplete(string)

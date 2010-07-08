@@ -1,7 +1,7 @@
 module Metropoli
   class State < ActiveRecord::Base
-    belongs_to  :country
-    has_many    :cities
+    belongs_to  :country, :class_name => Metropoli.country_class
+    has_many    :cities, :class_name => Metropoli.city_class
     extend StatementHelper
     
     def self.autocomplete(string)

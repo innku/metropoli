@@ -1,19 +1,19 @@
 module Metropoli
   class City < ActiveRecord::Base    
-    belongs_to  :state
+    belongs_to  :state, :class_name => Metropoli.state_class
     delegate    :country, :to => :state
     
     extend StatementHelper
     
     def self.autocomplete(string)
       city, state, country = string.split(',').map(&:strip)
-      results = City.like(city) unless city.nil?
+      results = city_class.like(city) unless city.nil?
       if !country.blank?
         results = results.includes(:state => :country)
-        results &= Country.like(country) & State.like(state)
+        results &= country_class.like(country) & state_class.like(state)
       elsif !state.blank?
         results = results.includes(:state)
-        results &= State.like(state)
+        results &= state_class.like(state)
       end
       results
     end
