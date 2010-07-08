@@ -52,9 +52,7 @@ module Metropoli
             end
           end
         end
-      end
-      
-      send :include, InstanceMethods
+      end      
     end
     
     
@@ -69,12 +67,15 @@ module Metropoli
       
       define_method "add_#{relation_name.singularize}" do |attr_value|
         results = relation_class.like(attr_value)
-        if results.count == 1
-          send("#{relation_name}") << results.first
-          results.first
-        else
-          nil
+        collection = send("#{relation_name}")
+        if (results.count == 1)
+          element = results.first
+          unless (args[:unique] and collection.include?(element))
+            collection << results.first
+            return element
+          end
         end
+        nil
       end
         
       define_method "remove_#{relation_name.singularize}" do |attr_value|
@@ -91,20 +92,18 @@ module Metropoli
         validate do |record|
           min = args[:min] || 1
           collection = record.send(relation_name)
+          
           if collection.size < min
-            record.errors.add(relation_name, Metropoli::Messages.error(relation_name, :not_enough))
-            if args[:max] and collection.size > args[:max]
-              record.errors.add(relation_name, Metropoli::Messages.error(relation_name, :too_many))
-            end
-          else
+            record.errors.add(relation_name, Metropoli::Messages.error(relation_name.singularize, :not_enough))
+          end
+          
+          if (args[:max] and (collection.size > args[:max].to_i))
+            record.errors.add(relation_name, Metropoli::Messages.error(relation_name.singularize, :too_many))
+          end
+          
         end
-      end
-      
+      end      
     end
-    
-  end
-  
-  module InstanceMethods
     
   end
   
