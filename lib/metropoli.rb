@@ -23,9 +23,10 @@ module Metropoli
   end
   
   if defined?(Rails) && Rails::VERSION::MAJOR == 3
-    require 'metropoli/associations'
     require 'metropoli/statement_helper'
+    require 'metropoli/configuration_helper'
     require 'metropoli/seed_helper'
+    require 'metropoli/associations'
     require 'metropoli/engine' 
   end
   

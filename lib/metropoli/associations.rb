@@ -13,12 +13,12 @@ module Metropoli
   module ClassMethods
     
     def belongs_to_metropoli(args = {})
-      relation_class_name = args[:with].nil? ? 'City' : args[:with].to_s.classify
-      relation_name = args[:as].nil? ? relation_class_name.downcase : args[:as].to_s
+      relation_class_name = ConfigurationHelper.relation_class_for(args[:with] || 'city')
+      relation_name = args[:as] || ConfigurationHelper.relation_name_for(relation_class_name)
       relation_class = eval(relation_class_name)
       relation_collector = "metropoli_#{relation_name.pluralize}".to_sym
 
-      self.belongs_to relation_name.to_sym, :class_name => "Metropoli::#{relation_class_name}"
+      self.belongs_to relation_name.to_sym, :class_name => relation_class_name
 
       define_method "#{relation_name}_name=" do |attr_name|
         write_attribute "#{relation_name}_name", attr_name
@@ -44,10 +44,10 @@ module Metropoli
           relation = record.read_attribute(relation_name)
           if collection
             if (collection.size > 1 rescue nil)
-              record.errors.add(relation_name, Metropoli::Messages.error(relation_class_name, :found_too_many) )
+              record.errors.add(relation_name, Metropoli::Messages.error(relation_name, :found_too_many) )
             end
             if (collection.size == 0)
-              record.errors.add(relation_name, Metropoli::Messages.error(relation_class_name, :couldnt_find))
+              record.errors.add(relation_name, Metropoli::Messages.error(relation_name, :couldnt_find))
             end
           end
         end

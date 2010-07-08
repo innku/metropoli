@@ -14,11 +14,17 @@ module Metropoli
     end
     
     def relation_class_for(name)
+      name = name.to_s
+      name.downcase!
       case name
         when 'city' then Metropoli.city_class_name
         when 'state' then Metropoli.state_class_name
         when 'country' then Metropoli.country_class_name
       end
+    end
+    
+    def relation_name_for(related_class)
+      related_class.split('::')[1].downcase
     end
     
   end

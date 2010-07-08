@@ -48,6 +48,7 @@ Gem::Specification.new do |s|
      "lib/generators/metropoli_generator.rb",
      "lib/metropoli.rb",
      "lib/metropoli/associations.rb",
+     "lib/metropoli/configuration_helper.rb",
      "lib/metropoli/engine.rb",
      "lib/metropoli/routes.rb",
      "lib/metropoli/seed_helper.rb",
