@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adrian Cuadros"]
-  s.date = %q{2010-07-07}
+  s.date = %q{2010-07-08}
   s.description = %q{Rails engine used to relate your models to a city database}
   s.email = %q{adrian@innku.com}
   s.extra_rdoc_files = [
@@ -24,7 +24,9 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "app/controllers/cities_controller.rb",
+     "app/controllers/metropoli/cities_controller.rb",
+     "app/controllers/metropoli/countries_controller.rb",
+     "app/controllers/metropoli/states_controller.rb",
      "app/models/metropoli/city.rb",
      "app/models/metropoli/country.rb",
      "app/models/metropoli/state.rb",
@@ -47,6 +49,7 @@ Gem::Specification.new do |s|
      "lib/metropoli.rb",
      "lib/metropoli/associations.rb",
      "lib/metropoli/engine.rb",
+     "lib/metropoli/routes.rb",
      "lib/metropoli/seed_helper.rb",
      "lib/metropoli/statement_helper.rb",
      "lib/tasks/cleanup.rake",

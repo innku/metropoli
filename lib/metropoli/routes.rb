@@ -1,15 +1,13 @@
 module ActionDispatch::Routing
   class Mapper
-    
     def metropoli_for(*resources)
-      resources.map!(&:to_sym)
-      resources.map{|r| resource_route(r) }
+      resources.map{|resource_name| resource_route(resource_name) }
     end
     
     protected
     
     def resource_route(resource_name)
-      resource resource_name, :only => [:index], :controller => "metropoli/#{resource_name.pluralize}"
+      self.resources resource_name, :only => [:index], :controller => "metropoli/#{resource_name.to_s.pluralize}"
     end
     
   end
