@@ -1,6 +1,5 @@
 # encoding: UTF-8
 require 'csv'
-require 'metropoli/seed_helper'
 namespace :metropoli do
   task :seed => :environment do 
     begin

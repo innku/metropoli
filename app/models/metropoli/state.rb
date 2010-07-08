@@ -2,7 +2,8 @@ module Metropoli
   class State < ActiveRecord::Base
     belongs_to  :country
     has_many    :cities
-
+    extend StatementHelper
+    
     def self.autocomplete(string)
       state, country = string.split(',').map(&:strip)
       results = State.like(state) unless state.nil?
@@ -11,8 +12,7 @@ module Metropoli
     end
   
     def self.like(name)
-      where("states.name #{Metropoli::LIKE} ? OR states.abbr #{Metropoli::LIKE} ?",
-            "%#{name}%","%#{name}%",)
+      self.where(like_statement(name))
     end
     
     def to_s
