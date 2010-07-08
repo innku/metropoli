@@ -5,6 +5,7 @@ module Metropoli
     delegate        :country, :to => :state
     
     extend StatementHelper
+    extend ConfigurationHelper
     
     def self.autocomplete(string)
       city, state, country = string.split(',').map(&:strip)

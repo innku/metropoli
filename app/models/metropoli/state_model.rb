@@ -4,6 +4,7 @@ module Metropoli
     belongs_to      :country, :class_name => Metropoli.country_class
     has_many        :cities,  :class_name => Metropoli.city_class, :foreign_key => :state_id
     extend StatementHelper
+    extend ConfigurationHelper
     
     def self.autocomplete(string)
       state, country = string.split(',').map(&:strip)

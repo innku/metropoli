@@ -3,6 +3,7 @@ module Metropoli
     set_table_name  :countries
     has_many        :states, :class_name => Metropoli.state_class, :foreign_key => :country_id
     extend StatementHelper
+    extend ConfigurationHelper
     
     def self.autocomplete(string)
       self.like(string)
