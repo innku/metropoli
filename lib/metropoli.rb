@@ -1,13 +1,13 @@
 module Metropoli
   
   mattr_accessor  :country_class
-  @@country_class = 'Metropoli::Country'
+  @@country_class = 'Metropoli::CountryModel'
   
   mattr_accessor  :state_class
-  @@state_class = 'Metropoli::State'
+  @@state_class = 'Metropoli::StateModel'
   
   mattr_accessor  :city_class
-  @@city_class = 'Metropoli::City'
+  @@city_class = 'Metropoli::CityModel'
   
   mattr_accessor  :country_autocomplete_fields
   @@country_autocomplete_fields = 'name, abbr'

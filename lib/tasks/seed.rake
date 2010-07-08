@@ -15,11 +15,11 @@ namespace :metropoli do
       include Metropoli::SeedHelper
       # encoding: UTF-8
       puts 'Loading countries..'
-      migrate_from_csv(Metropoli::Country, countries)
+      migrate_from_csv(Metropoli::CountryModel, countries)
       puts 'Loading states..'
-      migrate_from_csv(Metropoli::State, states)
+      migrate_from_csv(Metropoli::StateModel, states)
       puts 'Loading cities..'
-      migrate_from_csv(Metropoli::City, cities)
+      migrate_from_csv(Metropoli::CityModel, cities)
       
     rescue Exception => e
       puts 'There was an error processing your files'

@@ -56,11 +56,6 @@ module Metropoli
       send :include, InstanceMethods
     end
     
-    def has_many_metropoli(args = {})
-      self.has_many :cities, :class_name => 'Metropoli::City'
-      send :include, InstanceMethods
-    end
-    
   end
   
   module InstanceMethods
