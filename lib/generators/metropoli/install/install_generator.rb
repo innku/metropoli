@@ -39,6 +39,10 @@ module Metropoli
         end
       end
       
+      def generate_routes
+        route 'metropoli_for :cities, :states, :countries'
+      end
+      
       def show_readme
         readme 'README'
       end 

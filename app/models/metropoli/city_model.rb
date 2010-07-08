@@ -1,7 +1,7 @@
 module Metropoli
   class CityModel < ActiveRecord::Base    
     set_table_name  :cities
-    belongs_to      :state,   :class_name => 'basura'
+    belongs_to      :state,   :class_name => Metropoli.state_class
     delegate        :country, :to => :state
     
     extend StatementHelper
