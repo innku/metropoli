@@ -10,6 +10,7 @@ module Metropoli
       
       def self.next_migration_number(path)
         @seconds = @seconds.nil? ? Time.now.sec : (@seconds + 1)
+        @seconds = "0#{@seconds.to_s}" if @seconds < 10
         Time.now.utc.strftime("%Y%m%d%H%M") + @seconds.to_s
       end
       
@@ -17,7 +18,8 @@ module Metropoli
         if is_belongs_to?
           migration_template  'migrate/belongs_to.rb',"db/migrate/add_#{migration_name}_to_#{app_table_name}.rb"
         else
-          migration_template  'migrate/has_many.rb',"db/migrate/add_#{migration_name}_to_#{app_table_name}.rb"
+          migration_template  'migrate/has_and_belongs_to_many.rb',
+                              "db/migrate/add_#{migration_name}_to_#{app_table_name}.rb"
         end
       end
       

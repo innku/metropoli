@@ -3,9 +3,15 @@ en:
       city:
           couldnt_find: "couldn't find it"
           found_too_many: "please be more specific"
+          not_enough: "not enough"
+          too_many: "too many"
       state:
           couldnt_find: "couldn't find it"
           found_too_many: "please be more specific"
+          not_enough: "not enough"
+          too_many: "too many"
       country:
           couldnt_find: "couldn't find it"
           found_too_many: "please be more specific"
+          not_enough: "not enough"
+          too_many: "too many"

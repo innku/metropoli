@@ -8,6 +8,7 @@ module Metropoli
       
       def self.next_migration_number(path)
         @seconds = @seconds.nil? ? Time.now.sec : (@seconds + 1)
+        @seconds = "0#{@seconds.to_s}" if @seconds < 10
         Time.now.utc.strftime("%Y%m%d%H%M") + @seconds.to_s
       end
       

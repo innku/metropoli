@@ -4,11 +4,11 @@ Metropoli.setup do |config|
   # with your own class
   # Example config.city_class = 'City'
   
-  # config.city_class = 'Metropoli::City'
+  # config.city_class = 'Metropoli::CityModel'
   
-  # config.state_class = 'Metropoli::State'
+  # config.state_class = 'Metropoli::StateModel'
   
-  # config.country_class = 'Metropoli::Country'
+  # config.country_class = 'Metropoli::CountryModel'
   
   # Change if you want to add fields or rename the fields
   # in which the autocomplete searches for cities, states or countries

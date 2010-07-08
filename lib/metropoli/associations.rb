@@ -13,16 +13,17 @@ module Metropoli
   module ClassMethods
     
     def belongs_to_metropoli(args = {})
-      relation_class_name = ConfigurationHelper.relation_class_for(args[:with] || 'city')
-      relation_name = args[:as] || ConfigurationHelper.relation_name_for(relation_class_name)
+      metropoli_relation = args[:with] || 'city'
+      relation_class_name = ConfigurationHelper.relation_class_for(metropoli_relation)
+      relation_name = args[:as] || ConfigurationHelper.relation_name_for(args[:with])
       relation_class = eval(relation_class_name)
       relation_collector = "metropoli_#{relation_name.pluralize}".to_sym
 
       self.belongs_to relation_name.to_sym, :class_name => relation_class_name
 
-      define_method "#{relation_name}_name=" do |attr_name|
-        write_attribute "#{relation_name}_name", attr_name
-        write_attribute relation_collector, (relation_class.autocomplete(attr_name) || [])
+      define_method "#{relation_name}_name=" do |attr_value|
+        write_attribute "#{relation_name}_name", attr_value
+        write_attribute relation_collector, (relation_class.autocomplete(attr_value) || [])
         if read_attribute(relation_collector).size == 1
           send "#{relation_name}=", read_attribute(relation_collector).first
         else
@@ -44,10 +45,10 @@ module Metropoli
           relation = record.read_attribute(relation_name)
           if collection
             if (collection.size > 1 rescue nil)
-              record.errors.add(relation_name, Metropoli::Messages.error(relation_name, :found_too_many) )
+              record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :found_too_many))
             end
             if (collection.size == 0)
-              record.errors.add(relation_name, Metropoli::Messages.error(relation_name, :couldnt_find))
+              record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :couldnt_find))
             end
           end
         end
@@ -56,10 +57,55 @@ module Metropoli
       send :include, InstanceMethods
     end
     
+    
+    def has_and_belongs_to_many_metropoli(args = {})
+      relation_class_name = ConfigurationHelper.relation_class_for(args[:with] || 'cities')
+      relation_name = args[:as] || ConfigurationHelper.relation_name_for(args[:with], 'has_many')
+      relation_class = eval(relation_class_name)
+      
+      self.has_and_belongs_to_many relation_name.to_sym, :class_name => relation_class_name, 
+                                   :join_table => [self.table_name, relation_name].sort.join('_'),
+                                   :association_foreign_key => "#{relation_name.singularize}_id"
+      
+      define_method "add_#{relation_name.singularize}" do |attr_value|
+        results = relation_class.like(attr_value)
+        if results.count == 1
+          send("#{relation_name}") << results.first
+          results.first
+        else
+          nil
+        end
+      end
+        
+      define_method "remove_#{relation_name.singularize}" do |attr_value|
+        results = relation_class.like(attr_value)
+        if results.count == 1
+          send("#{relation_name}").delete(results.first)
+          results.first
+        else
+          nil
+        end
+      end
+      
+      if args[:required]
+        validate do |record|
+          min = args[:min] || 1
+          collection = record.send(relation_name)
+          if collection.size < min
+            record.errors.add(relation_name, Metropoli::Messages.error(relation_name, :not_enough))
+            if args[:max] and collection.size > args[:max]
+              record.errors.add(relation_name, Metropoli::Messages.error(relation_name, :too_many))
+            end
+          else
+        end
+      end
+      
+    end
+    
   end
   
   module InstanceMethods
-      
+    
   end
   
 end
