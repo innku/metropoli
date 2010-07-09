@@ -5,7 +5,7 @@ module Metropoli
     extend StatementHelper
     extend ConfigurationHelper
     
-    def self.autocomplete(string)
+    def self.autocomplete(string='')
       self.like(string)
     end
     

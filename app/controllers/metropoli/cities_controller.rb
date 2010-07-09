@@ -3,7 +3,7 @@ module Metropoli
     include ConfigurationHelper
     
     def index
-      @cities = eval(Metropoli.city_class).autocomplete(params[:q]).all
+      @cities = eval(Metropoli.city_class).autocomplete(params[:q]).limit(autocomplete_limit).all
       respond_to do |format|
         format.json { render :json => @cities, :root => :city, 
                                                :only => city_json_values,

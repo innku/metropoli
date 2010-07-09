@@ -18,6 +18,9 @@ module Metropoli
   mattr_accessor  :city_autocomplete_fields
   @@city_autocomplete_fields = 'name, alt_name'
   
+  mattr_accessor  :autocomplete_limit
+  @@autocomplete_limit = 20
+  
   mattr_accessor  :city_json_extra_methods
   @@city_json_extra_methods = ''
   

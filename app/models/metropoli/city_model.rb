@@ -8,15 +8,14 @@ module Metropoli
     extend ConfigurationHelper
     
     def self.autocomplete(string)
-      unless string.blank?
-        city, state, country = string.split(',').map(&:strip)
-        results = self.like(city) unless city.nil?
-        results = results.includes(:state => :country)
-        if !country.blank?
-          results &= country_class.like(country) & state_class.like(state)
-        elsif !state.blank?
-          results &= state_class.like(state)
-        end
+      string ||= ''
+      city, state, country = string.split(',').map(&:strip)
+      results = self.like(city)
+      results = results.includes(:state => :country)
+      if !country.blank?
+        results &= country_class.like(country) & state_class.like(state)
+      elsif !state.blank?
+        results &= state_class.like(state)
       end
       results
     end

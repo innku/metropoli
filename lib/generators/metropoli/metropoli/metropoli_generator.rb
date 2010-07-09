@@ -34,7 +34,7 @@ module Metropoli
       end
       
       def relation_name
-        [app_table_name,metropoli_model].sort.join('_')
+        [app_table_name,(options.as || metropoli_model)].sort.join('_')
       end
       
       def is_belongs_to?

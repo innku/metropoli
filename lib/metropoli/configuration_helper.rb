@@ -37,6 +37,10 @@ module Metropoli
       Metropoli.country_json_extra_methods.split(',').map(&:strip).map(&:to_sym)
     end
     
+    def autocomplete_limit
+      Metropoli.autocomplete_limit.to_i
+    end
+    
     def self.relation_class_for(name)
       name = name.to_s
       name.downcase!

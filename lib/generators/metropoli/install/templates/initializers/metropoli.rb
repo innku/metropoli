@@ -22,6 +22,13 @@ Metropoli.setup do |config|
   # config.country_autocomplete_fields = 'name, abbr'
   
   
+  ## Changes autocomplete limit default 
+  ## 
+  ## Example config.autocomplete_limit = 10
+  
+  # config.autocomplete_limit = 20
+  
+  
   ## Extra methods to include in the JSON render
   ##
   ## Example. config.city_json_extra_methods = 'zip_code'

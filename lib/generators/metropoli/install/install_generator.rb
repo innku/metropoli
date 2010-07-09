@@ -2,8 +2,8 @@ module Metropoli
   module Generators
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
-      class_option  :include_demo,    :type => :boolean, :default => false
-      class_option  :include_jquery,  :type => :boolean, :default => false 
+      class_option  :skip_demo,       :type => :boolean, :default => false
+      class_option  :with_jq,         :type => :boolean, :default => false 
       
       source_root File.expand_path('../templates',__FILE__)
       
@@ -34,7 +34,7 @@ module Metropoli
       end
       
       def generate_demo_seed
-        if options.include_demo?
+        unless options.skip_demo?
           copy_file 'csv/countries.csv', 'db/csv/countries.csv' 
           copy_file 'csv/states.csv', 'db/csv/states.csv' 
           copy_file 'csv/cities.csv', 'db/csv/cities.csv' 
@@ -42,7 +42,7 @@ module Metropoli
       end
       
       def generate_jquery_ui_javascript
-        if options.include_jquery?
+        if options.with_jq?
           copy_file 'javascripts/metropoli.jquery.ui.js', 'public/javascripts/metropoli.jquery.ui.js'
         end
       end

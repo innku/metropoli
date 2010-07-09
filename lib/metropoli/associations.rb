@@ -15,7 +15,7 @@ module Metropoli
     def belongs_to_metropoli(args = {})
       metropoli_relation = args[:with] || 'city'
       relation_class_name = ConfigurationHelper.relation_class_for(metropoli_relation)
-      relation_name = args[:as] || ConfigurationHelper.relation_name_for(args[:with])
+      relation_name = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(args[:with])
       relation_class = eval(relation_class_name)
       relation_collector = "metropoli_#{relation_name.pluralize}".to_sym
 
@@ -57,8 +57,9 @@ module Metropoli
     
     
     def has_and_belongs_to_many_metropoli(args = {})
+      metropoli_relation = (args[:with] ? args[:with].to_s.singularize : nil) || 'city'
       relation_class_name = ConfigurationHelper.relation_class_for(args[:with] || 'cities')
-      relation_name = args[:as] || ConfigurationHelper.relation_name_for(args[:with], 'has_many')
+      relation_name = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(args[:with], 'has_many')
       relation_class = eval(relation_class_name)
       
       self.has_and_belongs_to_many relation_name.to_sym, :class_name => relation_class_name, 
@@ -94,11 +95,11 @@ module Metropoli
           collection = record.send(relation_name)
           
           if collection.size < min
-            record.errors.add(relation_name, Metropoli::Messages.error(relation_name.singularize, :not_enough))
+            record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :not_enough))
           end
           
           if (args[:max] and (collection.size > args[:max].to_i))
-            record.errors.add(relation_name, Metropoli::Messages.error(relation_name.singularize, :too_many))
+            record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :too_many))
           end
           
         end
