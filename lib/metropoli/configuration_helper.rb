@@ -13,6 +13,30 @@ module Metropoli
       eval(Metropoli.country_class)
     end
     
+    def city_json_values
+      Metropoli.city_autocomplete_fields.split(',').map(&:strip).map(&:to_sym)
+    end
+    
+    def state_json_values
+      Metropoli.state_autocomplete_fields.split(',').map(&:strip).map(&:to_sym)
+    end
+    
+    def country_json_values
+      Metropoli.country_autocomplete_fields.split(',').map(&:strip).map(&:to_sym)
+    end
+    
+    def city_json_methods
+      Metropoli.city_json_extra_methods.split(',').map(&:strip).map(&:to_sym)
+    end
+    
+    def state_json_methods
+      Metropoli.state_json_extra_methods.split(',').map(&:strip).map(&:to_sym)
+    end
+    
+    def country_json_methods
+      Metropoli.country_json_extra_methods.split(',').map(&:strip).map(&:to_sym)
+    end
+    
     def self.relation_class_for(name)
       name = name.to_s
       name.downcase!

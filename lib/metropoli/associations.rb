@@ -66,7 +66,7 @@ module Metropoli
                                    :association_foreign_key => "#{relation_name.singularize}_id"
       
       define_method "add_#{relation_name.singularize}" do |attr_value|
-        results = relation_class.like(attr_value)
+        results = relation_class.autocomplete(attr_value)
         collection = send("#{relation_name}")
         if (results.count == 1)
           element = results.first
@@ -79,7 +79,7 @@ module Metropoli
       end
         
       define_method "remove_#{relation_name.singularize}" do |attr_value|
-        results = relation_class.like(attr_value)
+        results = relation_class.autocomplete(attr_value)
         if results.count == 1
           send("#{relation_name}").delete(results.first)
           results.first

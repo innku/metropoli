@@ -20,6 +20,12 @@ module Metropoli
     def to_s
       "#{self.name}, #{self.country.abbr}"
     end
+    
+    def to_json
+      ActiveSupport::JSON.encode(self,  :root => :state, 
+                                        :except => [:id, :country_id], 
+                                        :include => [:country])
+    end
 
   end
 end

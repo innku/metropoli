@@ -18,6 +18,15 @@ module Metropoli
   mattr_accessor  :city_autocomplete_fields
   @@city_autocomplete_fields = 'name, alt_name'
   
+  mattr_accessor  :city_json_extra_methods
+  @@city_json_extra_methods = ''
+  
+  mattr_accessor  :state_json_extra_methods
+  @@state_json_extra_methods = ''
+  
+  mattr_accessor  :country_json_extra_methods
+  @@country_json_extra_methods = ''
+  
   def self.setup
     yield self
   end

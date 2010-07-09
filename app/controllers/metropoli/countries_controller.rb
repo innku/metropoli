@@ -1,10 +1,13 @@
 module Metropoli
   class CountriesController < ApplicationController
-
+    include ConfigurationHelper
+    
     def index
-      @countries = eval(Metropoli.country_class).like(params[:q]).all
+      @countries = eval(Metropoli.country_class).autocomplete(params[:q]).all
       respond_to do |format|
-        format.json { render :json => @countries }
+        format.json { render :json => @countries, :root => :country, 
+                                                  :only => country_json_values,
+                                                  :methods => country_json_methods }
       end
     end
 
