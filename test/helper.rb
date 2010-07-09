@@ -1,10 +1,7 @@
 require 'rubygems'
-require 'test/unit'
-require 'shoulda'
+require 'active_record'
+require 'rspec'
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
+#$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+#$LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'metropoli'
-
-class Test::Unit::TestCase
-end

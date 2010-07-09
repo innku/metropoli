@@ -12,10 +12,10 @@ module Metropoli
   
   module ClassMethods
     
-    def belongs_to_metropoli(args = {})
-      metropoli_relation = args[:with] || 'city'
+    def metropoli_for(metropoli_model, args = {})
+      metropoli_relation = metropoli_model.to_s
       relation_class_name = ConfigurationHelper.relation_class_for(metropoli_relation)
-      relation_name = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(args[:with])
+      relation_name = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(metropoli_relation)
       relation_class = eval(relation_class_name)
       relation_collector = "metropoli_#{relation_name.pluralize}".to_sym
 
@@ -56,10 +56,10 @@ module Metropoli
     end
     
     
-    def has_and_belongs_to_many_metropoli(args = {})
-      metropoli_relation = (args[:with] ? args[:with].to_s.singularize : nil) || 'city'
-      relation_class_name = ConfigurationHelper.relation_class_for(args[:with] || 'cities')
-      relation_name = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(args[:with], 'has_many')
+    def metropoli_for_many(metropoli_model, args = {})
+      metropoli_relation = metropoli_model.to_s.singularize
+      relation_class_name = ConfigurationHelper.relation_class_for(metropoli_model)
+      relation_name = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(metropoli_model, 'has_many')
       relation_class = eval(relation_class_name)
       
       self.has_and_belongs_to_many relation_name.to_sym, :class_name => relation_class_name, 

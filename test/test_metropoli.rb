@@ -1,7 +1,6 @@
 require 'helper'
 
-class TestMetropoli < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
-  end
+describe 'Something' do
+  it 'should do stuff'
+  it 'could do stuff'
 end
