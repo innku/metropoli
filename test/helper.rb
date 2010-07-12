@@ -1,14 +1,16 @@
-#ENV["RAILS_ENV"] = "test"
+ENV["RAILS_ENV"] = "test"
 
 require 'rubygems'
+require 'factory_girl'
+require 'factories'
 require 'test/unit'
-require 'shoulda'
-require 'rails'
-require 'active_record'
+require "test_app/config/environment"
+require "rails/test_help"
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'metropoli'
+#require 'metropoli'
 
-class Test::Unit::TestCase
-end
+# Add support to load paths so we can overwrite broken webrat setup
+$:.unshift File.expand_path('../support', __FILE__)
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }

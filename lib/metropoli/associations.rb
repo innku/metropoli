@@ -59,7 +59,7 @@ module Metropoli
     def metropoli_for_many(metropoli_model, args = {})
       metropoli_relation = metropoli_model.to_s.singularize
       relation_class_name = ConfigurationHelper.relation_class_for(metropoli_model)
-      relation_name = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(metropoli_model, 'has_many')
+      relation_name = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(metropoli_model.to_s, 'has_many')
       relation_class = eval(relation_class_name)
       
       self.has_and_belongs_to_many relation_name.to_sym, :class_name => relation_class_name, 

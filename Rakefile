@@ -4,15 +4,14 @@ require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
 
-task :default => :test
-
 desc 'Run Metropoli unit tests.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
 end
+
+task :default => :test
 
 desc 'Generate documentation for Metropoli'
 Rake::RDocTask.new do |rdoc|
