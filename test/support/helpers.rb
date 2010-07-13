@@ -23,4 +23,8 @@ class ActiveSupport::TestCase
     end
   end
   
+  def return_to_defaults
+    
+  end
+  
 end
