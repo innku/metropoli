@@ -8,7 +8,7 @@ p. The main features of Metropoli are.
 
 h2. Install it
 
-p. Metropoli is built specifically for Rails 3, therefore it doesn't work with previous rails versions. Right now it's not released as a gem yet but you can use it copying the following code in your _Gemfile_.
+p. Metropoli is built specifically for Rails 3, therefore it doesn't work with previous rails versions. Right now it's not released as a gem yet but you can use it copying the following code in your *Gemfile*.
 
 bc. gem 'metropoli', :git => 'git://github.com/adriancuadros/metropoli.git'
 
@@ -33,13 +33,13 @@ h2. Use it
 
 p. TODO -> Description
 
-bc. rails generate metropoli _MODEL_ city
+bc. rails generate metropoli MODEL city
 
 bc. metropoli_for :city
 
 p. TODO -> Description
 
-bc. rails generate metropoli _MODEL_ cities
+bc. rails generate metropoli MODEL cities
 
 bc. metropoli_for_many :cities
 
