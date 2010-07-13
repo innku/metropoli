@@ -4,7 +4,9 @@ p. Metropoli is a flexible and unobstrusive city database engine that can relate
 
 p. It is built using Rails Engines and is inspired on Devise, the authentication solution by Plataforma Tecnologia.
 
-p. The main features of Metropoli are.
+p. The main features of Metropoli are...
+
+TODO -> Description
 
 h2. Install it
 
