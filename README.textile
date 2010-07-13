@@ -1,0 +1,7 @@
+h1. Metropoli
+
+p. Rails engine used to relate your models to a city database
+
+h2. Copyright
+
+p. Copyright (c) 2010 Innku. http://innku.com
