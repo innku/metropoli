@@ -1,6 +1,49 @@
 h1. Metropoli
 
-p. Rails engine used to relate your models to a city database
+p. Metropoli is a flexible and unobstrusive city database engine that can relate to your Rails 3 models.
+
+p. It is built using Rails Engines and is inspired on Devise, the authentication solution by Plataforma Tecnologia.
+
+p. The main features of Metropoli are.
+
+h2. Install it
+
+p. Metropoli 1.0.0 is built specifically for Rails 3, therefore it doesn't work with previous rails versions. To use it, copy
+
+bc. gem install metropoli
+
+bc. rails generate metropoli:install
+
+p. Metropoli has 2 different *installation options*
+
+* --skip-demo : Skips the generation of the example seed files 
+* --with-jq   : If you use Jquery you might want to use this javascript events for
+
+h2. Seed it
+
+TODO
+
+bc. rake metropoli:seed
+
+h2. Use it
+
+p. TODO -> Description
+
+bc. rails generate metropoli _MODEL_ city
+
+bc. metropoli_for :city
+
+p. TODO -> Description
+
+bc. rails generate metropoli _MODEL_ cities
+
+bc. metropoli_for_many :cities
+
+h2. Customize it
+
+TODO
+
+h2. Extend its behaviour
 
 h2. Copyright
 
