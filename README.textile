@@ -8,16 +8,14 @@ p. The main features of Metropoli are.
 
 h2. Install it
 
-p. Metropoli 1.0.0 is built specifically for Rails 3, therefore it doesn't work with previous rails versions. To use it, copy
+p. Metropoli is built specifically for Rails 3, therefore it doesn't work with previous rails versions. Right now it's not released as a gem yet but you can use it copying the following code in your _Gemfile_.
 
-bc. gem install metropoli
-
-bc. rails generate metropoli:install
+bc. gem 'metropoli', :git => 'git://github.com/adriancuadros/metropoli.git'
 
 p. Metropoli has 2 different *installation options*
 
 * --skip-demo : Skips the generation of the example seed files 
-* --with-jq   : If you use Jquery you might want to use this javascript events for
+* --with-jq   : If you use Jquery you might want to use this javascript events for autocomplete.
 
 h2. Seed it
 
