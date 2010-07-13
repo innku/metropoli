@@ -14,14 +14,14 @@ Gem::Specification.new do |s|
   s.email = %q{adrian@innku.com}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.textile"
   ]
   s.files = [
     ".bundle/config",
      ".document",
      ".gitignore",
      "LICENSE",
-     "README.rdoc",
+     "README.textile",
      "Rakefile",
      "VERSION",
      "app/controllers/metropoli/cities_controller.rb",
