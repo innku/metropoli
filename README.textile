@@ -53,6 +53,12 @@ h2. Extend its behaviour
 
 TODO -> Description
 
+h2. What we're doing to it
+
+p. You can check out what we are doing to the project on:
+
+http://www.pivotaltracker.com/projects/95880
+
 h2. Copyright
 
 p. Copyright (c) 2010 Innku. http://innku.com
