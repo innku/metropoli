@@ -27,8 +27,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "metropoli"
-    gem.summary = %Q{Rails engine used to relate your models to city database}
-    gem.description = %Q{Rails engine used to relate your models to a city database}
+    gem.summary = %Q{City database engine for rails 3}
+    gem.description = %Q{With this engine you can generate a flexible and unobstrusive city database engine that you can relate to your rails 3 models}
     gem.email = "adrian@innku.com"
     gem.homepage = "http://github.com/adriancuadros/metropoli"
     gem.authors = ["Adrian Cuadros"]
