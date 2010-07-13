@@ -12,16 +12,22 @@ p. Metropoli is built specifically for Rails 3, therefore it doesn't work with p
 
 bc. gem 'metropoli', :git => 'git://github.com/adriancuadros/metropoli.git'
 
+bc. rails generate metropoli:install
+
 p. Metropoli has 2 different *installation options*
 
-* --skip-demo : Skips the generation of the example seed files 
-* --with-jq   : If you use Jquery you might want to use this javascript events for autocomplete.
+* *--skip-demo* : Skips the generation of the example seed files 
+* *--with-jq*   : If you use Jquery you might want to use this javascript events for autocomplete.
 
 h2. Seed it
 
-TODO
+TODO -> Description
 
 bc. rake metropoli:seed
+
+TODO -> Description
+
+bc. rake metropoli:cleanup
 
 h2. Use it
 
@@ -39,9 +45,11 @@ bc. metropoli_for_many :cities
 
 h2. Customize it
 
-TODO
+TODO -> Description
 
 h2. Extend its behaviour
+
+TODO -> Description
 
 h2. Copyright
 
