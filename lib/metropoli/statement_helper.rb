@@ -22,7 +22,7 @@ module Metropoli
     end
     
     def autocomplete_fields
-      Metropoli.send("#{self.class_name.downcase}_autocomplete_fields").split(',').map(&:strip)
+      Metropoli.send("#{self.class.to_s.downcase}_autocomplete_fields").split(',').map(&:strip)
     end
   end
 end
