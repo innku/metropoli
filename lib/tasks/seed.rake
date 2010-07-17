@@ -1,11 +1,20 @@
 # encoding: UTF-8
-require 'csv'
+
+#Use appropriate ruby library
+if VERSION.include?('1.9')
+  require 'csv'
+  csv_class = CSV
+else
+  require 'fastercsv'
+  csv_class = FasterCSV
+end
+
 namespace :metropoli do
   task :seed => :environment do 
     begin
-      countries = CSV.open(RAILS_ROOT + 'db/csv/countries.csv', :headers => true)
-      states = CSV.open(RAILS_ROOT + 'db/csv/states.csv', :headers => true)
-      cities = CSV.open(RAILS_ROOT + 'db/csv/cities.csv', :headers => true)
+      countries = csv_class.open(RAILS_ROOT + 'db/csv/countries.csv', :headers => true)
+      states = csv_class.open(RAILS_ROOT + 'db/csv/states.csv', :headers => true)
+      cities = csv_class.open(RAILS_ROOT + 'db/csv/cities.csv', :headers => true)
       puts 'Files loaded.'
     rescue
       puts 'There was an error opening your CSV data Files. Please check the documentation.'

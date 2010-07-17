@@ -23,7 +23,7 @@ module Metropoli
 
       define_method "#{relation_name}_name=" do |attr_value|
         write_attribute "#{relation_name}_name", attr_value
-        write_attribute relation_collector, (relation_class.autocomplete(attr_value) || [])
+        write_attribute relation_collector, (relation_class.with_values(attr_value) || [])
         if read_attribute(relation_collector).size == 1
           send "#{relation_name}=", read_attribute(relation_collector).first
         else
@@ -67,7 +67,7 @@ module Metropoli
                                    :association_foreign_key => "#{relation_name.singularize}_id"
       
       define_method "add_#{relation_name.singularize}" do |attr_value|
-        results = relation_class.autocomplete(attr_value)
+        results = relation_class.with_values(attr_value)
         collection = send("#{relation_name}")
         if (results.count == 1)
           element = results.first
@@ -80,7 +80,7 @@ module Metropoli
       end
         
       define_method "remove_#{relation_name.singularize}" do |attr_value|
-        results = relation_class.autocomplete(attr_value)
+        results = relation_class.with_values(attr_value)
         if results.count == 1
           send("#{relation_name}").delete(results.first)
           results.first

@@ -4,20 +4,30 @@ module Metropoli
   module StatementHelper
     protected 
     def like_statement(name)
-      (where_clause << where_values(name)).flatten
+      (where_clause << like_values(name)).flatten
     end
     
-    def where_values(value)
+    def like_values(value)
       values = []
       self.autocomplete_fields.size.times{ values << "%#{value}%"}
       values
     end
     
-    def where_clause
-      [self.autocomplete_fields.collect{|field| where_field(field) }.join(' OR ')]
+    def find_statement(name)
+      (where_clause << find_values(name)).flatten
     end
     
-    def where_field(field)
+    def find_values(value)
+      values = []
+      self.autocomplete_fields.size.times{ values << value}
+      values
+    end
+    
+    def where_clause()
+      [self.autocomplete_fields.collect{|field| like_field(field) }.join(' OR ')]
+    end
+    
+    def like_field(field)
       "#{self.table_name}.#{field} #{Metropoli::LIKE} ?"
     end
     
@@ -28,6 +38,6 @@ module Metropoli
     def class_name
       model_name.to_s.gsub(/Metropoli::|Model/, '').to_s.downcase
     end
-    
+
   end
 end

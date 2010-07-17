@@ -18,6 +18,20 @@ module Metropoli
       self.where(like_statement(name))
     end
     
+    def self.is(name)
+      self.where(find_statement(name))
+    end
+    
+    def self.with_values(string='')
+      results = []
+      state, country = string.split(',').map(&:strip)
+      unless state.blank?
+        results = self.is(state)
+        results = results.includes(:country) & country_class.is(country) unless country.blank?
+      end
+      results
+    end
+    
     def to_s
       "#{self.name}, #{self.country.abbr}"
     end

@@ -13,6 +13,14 @@ module Metropoli
       self.where(like_statement(name))
     end
     
+    def self.is(name)
+      self.where(find_statement(name))
+    end
+    
+    def self.with_values(string)
+      self.is(string)
+    end
+    
     def to_s
       "#{self.name}"
     end

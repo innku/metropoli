@@ -7,8 +7,7 @@ module Metropoli
     extend StatementHelper
     extend ConfigurationHelper
     
-    def self.autocomplete(string)
-      string ||= ''
+    def self.autocomplete(string='')
       city, state, country = string.split(',').map(&:strip)
       results = self.like(city)
       results = results.includes(:state => :country)
@@ -22,6 +21,25 @@ module Metropoli
   
     def self.like(name)
       self.where(like_statement(name))
+    end
+    
+    def self.is(name)
+      self.where(find_statement(name))
+    end
+    
+    def self.with_values(string)
+      city, state, country = string.split(',').map(&:strip)
+      results = []
+      unless city.blank?
+        results = self.is(city)
+        results = results.includes(:state => :country)
+        if !country.blank?
+          results &= country_class.is(country) & state_class.is(state)
+        elsif !state.blank?
+          results &= state_class.is(state)
+        end
+      end
+      results
     end
     
     def to_s
