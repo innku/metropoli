@@ -33,7 +33,7 @@ module Metropoli
     end
     
     def to_s
-      "#{self.name}, #{self.country.abbr}"
+      "#{self.name}, #{self.country.name}"
     end
     
     def to_json

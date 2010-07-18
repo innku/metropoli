@@ -43,7 +43,7 @@ module Metropoli
     end
     
     def to_s
-      "#{self.name}, #{self.state.abbr}, #{self.country.abbr}"
+      "#{self.name}, #{self.state.name}, #{self.country.abbr}"
     end
   
   end
