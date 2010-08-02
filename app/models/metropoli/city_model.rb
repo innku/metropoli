@@ -8,6 +8,7 @@ module Metropoli
     extend ConfigurationHelper
     
     def self.autocomplete(string='')
+      string||=''
       city, state, country = string.split(',').map(&:strip)
       results = self.like(city)
       results = results.includes(:state => :country)
@@ -28,6 +29,7 @@ module Metropoli
     end
     
     def self.with_values(string)
+      string ||=""
       city, state, country = string.split(',').map(&:strip)
       results = []
       unless city.blank?

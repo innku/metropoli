@@ -5,8 +5,7 @@ module Metropoli
   
   module Messages
     def self.error(class_name, kind)
-      I18n.t( kind, :resource_name => class_name,
-             :scope => [:metropoli, class_name.downcase])
+      I18n.t( kind, :scope => [:metropoli, self.class.to_s.downcase])
     end
   end 
   

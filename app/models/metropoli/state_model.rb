@@ -23,6 +23,7 @@ module Metropoli
     end
     
     def self.with_values(string='')
+      string ||=""
       results = []
       state, country = string.split(',').map(&:strip)
       unless state.blank?

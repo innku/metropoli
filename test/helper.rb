@@ -9,7 +9,6 @@ require "rails/test_help"
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-#require 'metropoli'
 
 # Add support to load paths so we can overwrite broken webrat setup
 $:.unshift File.expand_path('../support', __FILE__)
