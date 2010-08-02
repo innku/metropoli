@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adrian Cuadros"]
-  s.date = %q{2010-07-13}
+  s.date = %q{2010-08-01}
   s.description = %q{With this engine you can generate a flexible and unobstrusive city database engine that you can relate to your rails 3 models}
   s.email = %q{adrian@innku.com}
   s.extra_rdoc_files = [
@@ -73,6 +73,7 @@ Gem::Specification.new do |s|
      "test/support/metropoli_helpers.rb",
      "test/test_app/.gitignore",
      "test/test_app/Gemfile",
+     "test/test_app/Gemfile.lock",
      "test/test_app/README",
      "test/test_app/Rakefile",
      "test/test_app/app/controllers/application_controller.rb",
