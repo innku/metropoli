@@ -12,9 +12,9 @@ end
 namespace :metropoli do
   task :seed => :environment do 
     begin
-      countries = csv_class.open(RAILS_ROOT + 'db/csv/countries.csv', :headers => true)
-      states = csv_class.open(RAILS_ROOT + 'db/csv/states.csv', :headers => true)
-      cities = csv_class.open(RAILS_ROOT + 'db/csv/cities.csv', :headers => true)
+      countries = csv_class.open(Rails.root + 'db/csv/countries.csv', :headers => true)
+      states = csv_class.open(Rails.root + 'db/csv/states.csv', :headers => true)
+      cities = csv_class.open(Rails.root + 'db/csv/cities.csv', :headers => true)
       puts 'Files loaded.'
     rescue
       puts 'There was an error opening your CSV data Files. Please check the documentation.'
