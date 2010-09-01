@@ -37,12 +37,18 @@ module Metropoli
       end
       
       #Validation Methods
-      if args[:required]
-        validates_presence_of   relation_name
+      if args[:required] || args[:required_if]
+        #TODO optimize this
+        if args[:required_if]
+          validates_presence_of   relation_name, :if => args[:required_if]
+        else
+          validates_presence_of   relation_name
+        end
         validate do |record|
           collection = record.read_attribute(relation_collector)
           relation = record.read_attribute(relation_name)
-          if collection
+          needs_validation = args[:required_if].nil? ? true : record.send(args[:required_if])
+          if collection && needs_validation
             if (collection.size > 1 rescue nil)
               record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :found_too_many))
             end

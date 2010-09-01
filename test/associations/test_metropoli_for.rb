@@ -70,6 +70,18 @@ class TestMetropoliFor < ActiveSupport::TestCase
     assert !new_user.valid?
   end
   
+  test 'it shouldnt be valid if the city is required with a filter and the filter is true' do
+    @user_class.metropoli_for  :city, :required_if => :true
+    new_user = @user_class.new
+    assert !new_user.valid?
+  end
+  
+  test 'it should be valid if the city is required with a filter, city is nil and the filter is false' do
+    @user_class.metropoli_for  :city, :required_if => :false
+    new_user = @user_class.new
+    assert new_user.valid?
+  end
+  
   test 'it shouldnt be valid if the city is required and no city is found' do
     @user_class.metropoli_for  :city, :required => true
     new_user = @user_class.new
