@@ -1,7 +1,20 @@
 ===============================================================================
 
-I have to change this code
+You might want to do a couple of things to get started.
 
-  1. To show how you must set up locale
+1. Migrate the city database tables and test out the example city database 
+   using the following rake task:
+
+   rake metropoli:seed
+
+2. Start relating your models to the city database with the generator:
+
+   rails generate metropoli [model] [city | state | country] [options]
+		
+3. (If you'd like to use jquery) Get Jquery and JQuery UI Autocomplete to use
+   the built in autocomplete feature. You can get both at:
+
+	http://jquery.com/
+	http://jqueryui.com/
 
 ===============================================================================

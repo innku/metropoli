@@ -4,9 +4,12 @@ p. Metropoli is a flexible and unobstrusive city database engine that can relate
 
 p. It is built using Rails Engines and is inspired on Devise, the authentication solution by Plataforma Tecnologia.
 
-p. The main features of Metropoli are...
+p. The main features of Metropoli are.
 
-TODO -> Description
+* Non obstrusive city database
+* Provides easy and flexible way to relate your models to a city, state or country.
+* Developed thinking of non-obstrusive javascript.
+* Prepared for behaviour extension.
 
 h2. Install it
 
@@ -23,31 +26,78 @@ p. Metropoli has 2 different *installation options*
 
 h2. Seed it
 
-TODO -> Description
+p. Metropoli includes a rake task to seed the database based on CSV Files. The files are under the directory "/db/csv" and they are named:
+
+* countries.csv
+* states.csv
+* cities.csv
+
+p. By default the installation will create an example database but you will likely edit this files to fit your needs according to your country.
+
+p. The csv files are self-explaining, if you want to add a column to any of the database tables, you can add it in the appropriate migration file, add a column in the csv file with the name of the new field as the first line, and the migration will just work.
+
+p. This rake task will run the migration.
 
 bc. rake metropoli:seed
 
-TODO -> Description
+p. *errors?*
+
+p. If you should encounter any errors while seeding the database, you can clean the tables up with the following command:
 
 bc. rake metropoli:cleanup
 
-h2. Use it
+h2. Use it in your models
 
-p. TODO -> Description
+p. To start using metropoli you need to generate the migration that will relate your model to the engine. You can do this with the following command.
 
-bc. rails generate metropoli MODEL city
+bc. rails generate metropoli model [city|state|country] [options]
+
+* *model* is the name of the name of your model
+* *[city|state|country]* is the type of relation you would like to have, you can select either city, state or country
+
+p. The option *--as* is useful when you'd like to explicitly name your relation with the engine.
+
+p. After you run the migration, you need to declare the association in your model.
 
 bc. metropoli_for :city
 
-p. TODO -> Description
+p. This declaration will generate the attribute *city_name* in your model, both reader and writer. If you want to assign a city to your model you can simply assign it as a string. For example, if you had a user model, you might do the following.
 
-bc. rails generate metropoli MODEL cities
+bc. @user.city_name = 'Houston'
 
-bc. metropoli_for_many :cities
+p. After that the user will be automatically related to the City. You can be more specific with the assignation like this:
+
+bc. @user.city_name = 'Houston, Tx'
+
+p. That will also work. This process is also valid for both *states and countries*.
+
+p. If you want to explicitly name the relation it will be a similar process. For example if you have a trip with an origin and a destination you might declare it in the model like:
+
+bc. metropoli_for :city, :as => 'origin'
+
+bc. metropoli_for :city, :as => 'destination'
+
+p. The generated attributes would be *origin_name* and *destination_name*. All of the previously mentioned functionality would work in the same way.
+
+h2. Use it in your interface
+
+p. If you want to use the autocomplete functionality you need to add both *jquery* and *jqueryui* to your layout. After that you need to add the script generated in the installation: *metropoli.jquery.ui* to your layout.
+
+p. To use it just add one of the following classes to your inputs:
+
+bc.  f.text_field :city_name, :class => 'city_autocomplete'
+
+bc.  f.text_field :state_name, :class => 'state_autocomplete'
+
+bc.  f.text_field :country_name, :class => 'country_autocomplete'
+
+p. The process of adding explicitly named relations is the same for the name of the attribute but the css class needs one of the above according to the relation type.
 
 h2. Customize it
 
-TODO -> Description
+p. There are several ways to customize the gem with the configuration options found in the initializer:
+
+*metropoli.rb*
 
 h2. Extend its behaviour
 

@@ -3,11 +3,9 @@ class CreateMetropoliCities < ActiveRecord::Migration
     create_table :cities do |t|
       t.integer :state_id
       t.string  :name
-      t.string  :alt_name
     end
     
     add_index :cities, :name
-    add_index :cities, :alt_name
     add_index :cities, :state_id
   end
   

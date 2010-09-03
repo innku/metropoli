@@ -2,11 +2,13 @@ module Metropoli
   module Generators
     class MetropoliGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
-      argument      :for_model, :type => :string
-      argument      :metropoli_model,  :type => :string, :default => 'city'
-      class_option  :as, :type => :string
+      argument      :for_model, :type => :string, :banner => 'model'
+      argument      :metropoli_model,  :type => :string, :default => 'city', :banner => 'city|state|country'
+      class_option  :as, :type => :string, :desc => 'sets a name for the relation different from city, state or country.'
       
       source_root File.expand_path('../templates',__FILE__)
+      
+      desc 'Generates the relation from one of the applications models to any city, state or country'
       
       def self.next_migration_number(path)
         @seconds = @seconds.nil? ? Time.now.sec : (@seconds + 1)
@@ -24,7 +26,16 @@ module Metropoli
       end
       
       def show_readme
-        readme "README"
+        puts <<-CONTENT
+===============================================================================
+
+To relate your model to the engine copy the following line to your 
+#{for_model} model:
+   
+  metropoli_for   :#{metropoli_model}#{(", :as => '" + options.as + "'") if options.as? }
+                
+===============================================================================
+CONTENT
       end
       
       private

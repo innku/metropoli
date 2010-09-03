@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adrian Cuadros"]
-  s.date = %q{2010-08-01}
+  s.date = %q{2010-09-02}
   s.description = %q{With this engine you can generate a flexible and unobstrusive city database engine that you can relate to your rails 3 models}
   s.email = %q{adrian@innku.com}
   s.extra_rdoc_files = [
@@ -54,8 +54,6 @@ Gem::Specification.new do |s|
      "lib/metropoli/routes.rb",
      "lib/metropoli/seed_helper.rb",
      "lib/metropoli/statement_helper.rb",
-     "lib/tasks/cleanup.rake",
-     "lib/tasks/seed.rake",
      "metropoli.gemspec",
      "test/associations/test_metropoli_for.rb",
      "test/associations/test_metropoli_for_many.rb",
@@ -196,11 +194,14 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, ["= 1.3.0"])
+      s.add_runtime_dependency(%q<fastercsv>, ["~> 1.5.3"])
     else
       s.add_dependency(%q<rspec>, ["= 1.3.0"])
+      s.add_dependency(%q<fastercsv>, ["~> 1.5.3"])
     end
   else
     s.add_dependency(%q<rspec>, ["= 1.3.0"])
+    s.add_dependency(%q<fastercsv>, ["~> 1.5.3"])
   end
 end
 

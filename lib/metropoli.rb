@@ -16,7 +16,7 @@ module Metropoli
   @@state_autocomplete_fields = 'name, abbr'
   
   mattr_accessor  :city_autocomplete_fields
-  @@city_autocomplete_fields = 'name, alt_name'
+  @@city_autocomplete_fields = 'name'
   
   mattr_accessor  :autocomplete_limit
   @@autocomplete_limit = 20

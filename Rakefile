@@ -33,6 +33,7 @@ begin
     gem.homepage = "http://github.com/adriancuadros/metropoli"
     gem.authors = ["Adrian Cuadros"]
     gem.add_development_dependency "rspec", "=1.3.0"
+    gem.add_dependency("fastercsv", "~> 1.5.3")
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

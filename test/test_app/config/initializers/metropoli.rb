@@ -15,7 +15,7 @@ Metropoli.setup do |config|
   ## in which the autocomplete searches for cities, states or countries
   ## Example. config.city_autocomplete_fields = 'name, alt_name, capital_name, ascii_name'
   
-  # config.city_autocomplete_fields = 'name, alt_name'
+  # config.city_autocomplete_fields = 'name'
   
   # config.state_autocomplete_fields = 'name, abbr'
   

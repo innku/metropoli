@@ -14,10 +14,8 @@ ActiveRecord::Schema.define(:version => 20100712220212) do
   create_table "cities", :force => true do |t|
     t.integer "state_id"
     t.string  "name"
-    t.string  "alt_name"
   end
 
-  add_index "cities", ["alt_name"], :name => "index_cities_on_alt_name"
   add_index "cities", ["name"], :name => "index_cities_on_name"
   add_index "cities", ["state_id"], :name => "index_cities_on_state_id"
 
