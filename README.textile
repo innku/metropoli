@@ -53,7 +53,7 @@ p. To start using metropoli you need to generate the migration that will relate 
 
 bc. rails generate metropoli model [city|state|country] [options]
 
-* *model* is the name of the name of your model
+* *model* is the name of your model
 * *[city|state|country]* is the type of relation you would like to have, you can select either city, state or country
 
 p. The option *--as* is useful when you'd like to explicitly name your relation with the engine.
