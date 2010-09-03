@@ -8,6 +8,7 @@ p. The main features of Metropoli are.
 
 * Non obstrusive city database
 * Provides easy and flexible way to relate your models to a city, state or country.
+* Built-in jquery autocomplete solution with json response.
 * Developed thinking of non-obstrusive javascript.
 * Prepared for behaviour extension.
 
