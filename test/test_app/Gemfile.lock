@@ -2,6 +2,7 @@ PATH
   remote: /Users/Adrian/Sites/gems/metropoli
   specs:
     metropoli (0.0.0)
+      fastercsv (~> 1.5.3)
 
 GEM
   remote: http://rubygems.org/
@@ -38,6 +39,7 @@ GEM
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    fastercsv (1.5.3)
     i18n (0.4.1)
     mail (2.2.5)
       activesupport (>= 2.3.6)

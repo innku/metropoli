@@ -9,7 +9,7 @@ module Metropoli
           else
             line_values.to_hash.keys.map{|attribute| record.send("#{attribute}=",line_values[attribute]) }
           end
-          record.save(false)
+          record.save(:validate => false)
         end
       end
     end
