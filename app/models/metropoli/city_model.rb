@@ -47,6 +47,12 @@ module Metropoli
     def to_s
       "#{self.name}, #{self.state.name}, #{self.country.abbr}"
     end
+    
+    def metropoli_json
+      self.to_json(:root => :city, 
+                   :only => [:id],
+                   :methods => [:to_s])
+    end
   
   end
 end

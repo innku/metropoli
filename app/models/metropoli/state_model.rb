@@ -37,11 +37,11 @@ module Metropoli
       "#{self.name}, #{self.country.name}"
     end
     
-    def to_json
-      ActiveSupport::JSON.encode(self,  :root => :state, 
-                                        :except => [:id, :country_id], 
-                                        :include => [:country])
+    def metropoli_json
+      self.to_json(:root => :state, 
+                   :only => [:id],
+                   :methods => [:to_s])
     end
-
+    
   end
 end

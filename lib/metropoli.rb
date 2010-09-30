@@ -21,15 +21,6 @@ module Metropoli
   mattr_accessor  :autocomplete_limit
   @@autocomplete_limit = 20
   
-  mattr_accessor  :city_json_extra_methods
-  @@city_json_extra_methods = ''
-  
-  mattr_accessor  :state_json_extra_methods
-  @@state_json_extra_methods = ''
-  
-  mattr_accessor  :country_json_extra_methods
-  @@country_json_extra_methods = ''
-  
   def self.setup
     yield self
   end
@@ -40,6 +31,9 @@ module Metropoli
     require 'metropoli/seed_helper'
     require 'metropoli/associations'
     require 'metropoli/engine' 
+    require 'metropoli/rack/cities'
+    require 'metropoli/rack/states'
+    require 'metropoli/rack/countries'
   end
   
 end

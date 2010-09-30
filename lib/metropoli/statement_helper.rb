@@ -9,7 +9,7 @@ module Metropoli
     
     def like_values(value)
       values = []
-      self.autocomplete_fields.size.times{ values << "%#{value}%"}
+      self.autocomplete_fields.size.times{ values << "#{value}%"}
       values
     end
     
