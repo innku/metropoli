@@ -33,26 +33,6 @@ class TestConfiguration < ActionController::IntegrationTest
     
   end
   
-  test 'add custom methods to json configuration' do
-    
-    Metropoli::Helpers.set_custom_classes
-    
-    Metropoli.city_json_extra_methods = 'some_extra_method'
-    Metropoli.state_json_extra_methods = 'some_extra_method'
-    Metropoli.country_json_extra_methods = 'some_extra_method'
-    
-    
-    get "/cities.json"
-    assert_not_nil ActiveSupport::JSON.decode(response.body).first['city']['some_extra_method']
-    
-    get "/states.json"
-    assert_not_nil ActiveSupport::JSON.decode(response.body).first['state']['some_extra_method']
-    
-    get "/countries.json"
-    assert_not_nil ActiveSupport::JSON.decode(response.body).first['country']['some_extra_method']
-    
-  end
-  
   def teardown
     Metropoli::Helpers.return_to_defaults
   end

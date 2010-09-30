@@ -7,9 +7,6 @@ module Metropoli
       Metropoli.city_autocomplete_fields = 'name'
       Metropoli.state_autocomplete_fields = 'name,abbr'
       Metropoli.country_autocomplete_fields = 'name,abbr'
-      Metropoli.city_json_extra_methods = ''
-      Metropoli.state_json_extra_methods = ''
-      Metropoli.country_json_extra_methods = ''
     end
     
     def self.set_custom_classes

@@ -11,8 +11,8 @@ class TestCity < ActiveSupport::TestCase
     assert_equal Metropoli::CityModel.like('Monterrey').count, 1
   end
   
-  test 'like method should find cities with %%' do
-    assert_equal Metropoli::CityModel.like('o').count, 2
+  test 'like method should find cities with %' do
+    assert_equal Metropoli::CityModel.like('mo').count, 1
   end
   
   test 'like method should return all cities with blank' do

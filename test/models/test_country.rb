@@ -12,8 +12,8 @@ class TestCountry < ActiveSupport::TestCase
     assert_equal Metropoli::CountryModel.like('Bol').count, 1
   end
   
-  test 'like method should find countries with %%' do
-    assert_equal Metropoli::CountryModel.like('o').count, 2
+  test 'like method should find countries with %' do
+    assert_equal Metropoli::CountryModel.like('bo').count, 1
   end
   
   test 'like method should return all countries with blank' do

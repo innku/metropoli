@@ -4,16 +4,16 @@ class TestState < ActiveSupport::TestCase
   
   def setup
     nle = Factory(:state)
-    jal = Factory(:state, :name => 'Jalisco')
+    jal = Factory(:state, :name => 'Nueva villa')
   end
   
   test 'like method should find states by name' do
-    assert_equal Metropoli::StateModel.like('Jalisco').count, 1
+    assert_equal Metropoli::StateModel.like('Nueva villa').count, 1
     assert_equal Metropoli::StateModel.like('Nuevo Leon').count, 1
   end
   
-  test 'like method should find states with %%' do
-    assert_equal Metropoli::StateModel.like('l').count, 2
+  test 'like method should find states with %' do
+    assert_equal Metropoli::StateModel.like('nue').count, 2
   end
   
   test 'like method should return all states with blank' do
@@ -31,7 +31,7 @@ class TestState < ActiveSupport::TestCase
   
   test 'autocomplete method should find states with country full name' do
     assert_equal Metropoli::StateModel.autocomplete('Nuevo Leon, Mexico').count, 1
-    assert_equal Metropoli::StateModel.autocomplete('Jalisco, Mexi').count, 1
+    assert_equal Metropoli::StateModel.autocomplete('Nueva vill, Mexi').count, 1
   end
   
   test 'autocomplete method should scope state with provided country' do
