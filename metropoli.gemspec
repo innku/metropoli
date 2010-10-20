@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adrian Cuadros"]
-  s.date = %q{2010-09-30}
+  s.date = %q{2010-10-20}
   s.description = %q{With this engine you can generate a flexible and unobstrusive city database engine that you can relate to your rails 3 models}
   s.email = %q{adrian@innku.com}
   s.extra_rdoc_files = [
