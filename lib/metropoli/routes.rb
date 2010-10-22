@@ -7,7 +7,7 @@ module ActionDispatch::Routing
     protected
     
     def resource_route(resource_name)
-      self.match "#{resource_name}.json" => eval("Metropoli::#{resource_name.titleize}")
+      self.match "#{resource_name}.json" => Metropoli::Api
     end
     
   end

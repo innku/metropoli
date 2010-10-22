@@ -31,9 +31,7 @@ module Metropoli
     require 'metropoli/seed_helper'
     require 'metropoli/associations'
     require 'metropoli/engine' 
-    require 'metropoli/rack/cities'
-    require 'metropoli/rack/states'
-    require 'metropoli/rack/countries'
+    require 'metropoli/api/api'
   end
   
 end
