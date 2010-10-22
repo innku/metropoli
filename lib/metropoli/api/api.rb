@@ -1,6 +1,6 @@
 require 'sinatra'
 
-class Metropoli
+module Metropoli
   class Api < Sinatra::Base
     include ConfigurationHelper
   
