@@ -4,7 +4,7 @@ module Metropoli
       migration_class.transaction do
         csv_file.each do |line_values|
           record = migration_class.new
-          if VERSION.include?('1.9')
+          if RUBY_VERSION.include?('1.9')
             line_values.to_hash.keys.map{|attribute| record.send("#{attribute}=",utf8(line_values[attribute])) }
           else
             line_values.to_hash.keys.map{|attribute| record.send("#{attribute}=",line_values[attribute]) }

@@ -1,5 +1,6 @@
 module Metropoli
   module Helpers
+    
     def self.return_to_defaults
       Metropoli.city_class = 'Metropoli::CityModel'
       Metropoli.state_class = 'Metropoli::StateModel'

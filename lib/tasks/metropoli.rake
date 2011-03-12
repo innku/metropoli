@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 #Use appropriate ruby library
-if VERSION.include?('1.9')
+if RUBY_VERSION.include?('1.9')
   require 'csv'
   csv_class = CSV
 else
