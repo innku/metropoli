@@ -189,18 +189,15 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, ["= 1.3.0"])
-      s.add_runtime_dependency(%q<fastercsv>, ["~> 1.5.3"])
       s.add_runtime_dependency(%q<sinatra>, [">= 1.0"])
       s.add_runtime_dependency(%q<json>, ["~> 1.4.6"])
     else
       s.add_dependency(%q<rspec>, ["= 1.3.0"])
-      s.add_dependency(%q<fastercsv>, ["~> 1.5.3"])
       s.add_dependency(%q<sinatra>, [">= 1.0"])
       s.add_dependency(%q<json>, ["~> 1.4.6"])
     end
   else
     s.add_dependency(%q<rspec>, ["= 1.3.0"])
-    s.add_dependency(%q<fastercsv>, ["~> 1.5.3"])
     s.add_dependency(%q<sinatra>, [">= 1.0"])
     s.add_dependency(%q<json>, ["~> 1.4.6"])
   end

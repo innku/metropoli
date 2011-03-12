@@ -5,7 +5,7 @@ if RUBY_VERSION.include?('1.9')
   require 'csv'
   csv_class = CSV
 else
-  require 'fastercsv'
+  require 'fastercsv'  
   csv_class = FasterCSV
 end
 
