@@ -1,4 +1,4 @@
-TestApp::Application.routes.draw do |map|
+TestApp::Application.routes.draw do
   metropoli_for :cities, :states, :countries
 
   # The priority is based upon order of creation:

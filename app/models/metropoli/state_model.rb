@@ -10,7 +10,7 @@ module Metropoli
       string ||= ''
       state, country = string.split(',').map(&:strip)
       results = self.like(state)
-      results = results.includes(:country) & country_class.like(country) unless country.blank?
+      results = results.includes(:country).merge(country_class.like(country)) unless country.blank?
       results
     end
   

@@ -13,9 +13,9 @@ module Metropoli
       results = self.like(city)
       results = results.includes(:state => :country)
       if !country.blank?
-        results &= country_class.like(country) & state_class.like(state)
+        results = results.merge country_class.like(country).merge(state_class.like(state)) 
       elsif !state.blank?
-        results &= state_class.like(state)
+        results = results.merge state_class.like(state)
       end
       results
     end
