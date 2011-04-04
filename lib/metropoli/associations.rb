@@ -68,8 +68,6 @@ module Metropoli
       relation_class      = eval(relation_class_name)
       joint_table         = [self.table_name, relation_class.table_name].sort.join('_')
 
-
-      
       self.has_and_belongs_to_many relation_name.to_sym, :class_name => relation_class_name, 
                                    :join_table => joint_table,
                                    :association_foreign_key => "#{relation_name.singularize}_id"

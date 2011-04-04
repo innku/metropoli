@@ -96,6 +96,7 @@ class TestMetropoliForMany < ActiveSupport::TestCase
     @user_class.metropoli_for_many  :cities, :required => true, :min => 2
     new_user = @user_class.new
     new_user.cities << @mty
+    assert_equal 1, new_user.cities.size
     assert !new_user.valid?
     assert new_user.errors[:cities].include?(Metropoli::Messages.error(:city, :not_enough))
   end
@@ -103,7 +104,8 @@ class TestMetropoliForMany < ActiveSupport::TestCase
   test 'it should be invalid has an outreached max value' do
     @user_class.metropoli_for_many  :cities, :required => true, :max => 2
     new_user = @user_class.new
-    new_user.cities << @mty << @mty << @mty
+    new_user.cities = (1..3).map { Factory(:city) }
+    assert_equal 3, new_user.cities.size
     assert !new_user.valid?
     assert new_user.errors[:cities].include?(Metropoli::Messages.error(:city, :too_many))
   end
@@ -111,9 +113,10 @@ class TestMetropoliForMany < ActiveSupport::TestCase
   test 'it should valid if its within the limits' do
     @user_class.metropoli_for_many  :cities, :required => true, :max => 2
     new_user = @user_class.new
-    new_user.cities << @mty << @mty
+    new_user.cities = (1..2).map { Factory(:city) }
+    assert_equal 2, new_user.cities.size
     new_user.valid?
-    assert_equal  [], new_user.errors[:cities]
+    assert new_user.errors[:cities].empty?
   end
   
 end
