@@ -19,3 +19,5 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
+# To avoid conflicts between gem versions
+test/test_app/Gemfile.lock
