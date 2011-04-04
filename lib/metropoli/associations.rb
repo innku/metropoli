@@ -62,13 +62,16 @@ module Metropoli
     
     
     def metropoli_for_many(metropoli_model, args = {})
-      metropoli_relation = metropoli_model.to_s.singularize
+      metropoli_relation  = metropoli_model.to_s.singularize
       relation_class_name = ConfigurationHelper.relation_class_for(metropoli_model)
-      relation_name = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(metropoli_model.to_s, 'has_many')
-      relation_class = eval(relation_class_name)
+      relation_name       = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(metropoli_model.to_s, 'has_many')
+      relation_class      = eval(relation_class_name)
+      joint_table         = [self.table_name, relation_class.table_name].sort.join('_')
+
+
       
       self.has_and_belongs_to_many relation_name.to_sym, :class_name => relation_class_name, 
-                                   :join_table => [self.table_name, relation_name].sort.join('_'),
+                                   :join_table => joint_table,
                                    :association_foreign_key => "#{relation_name.singularize}_id"
       
       define_method "add_#{relation_name.singularize}" do |attr_value|
