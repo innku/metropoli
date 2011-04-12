@@ -6,6 +6,7 @@ names_es:
   - "Estados Unidos Mexicanos"
   - Méjico
   - México
+iso: MX
 regions: 
   - 
     ascii_name: Yucatan
@@ -5668,6 +5669,7 @@ regions:
       - "Estado de Oaxaca"
   - 
     ascii_name: "Nuevo Leon"
+    abbr: NLE
     cities: 
       - 
         alternate_names: 

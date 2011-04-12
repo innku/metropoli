@@ -5,23 +5,15 @@ require 'metropoli/seed_helper'
 
 class TestSeedHelper < Test::Unit::TestCase
   include Metropoli
-  include SeedHelper
-
-  def setup
-    CountryModel.delete_all
-    StateModel.delete_all
-    CityModel.delete_all
-  end
 
   context 'seeding from a country' do
     setup do
-      seed_from_yaml File.join(File.dirname(__FILE__), 'support', 'mexico.yml')
       @country = CountryModel.first
       @state   = StateModel.first
     end
       
     should 'save a country' do
-      assert_equal 1, CountryModel.count
+      assert_equal 2, CountryModel.count
       assert_equal 'Mexico', @country.name
       assert_equal "Mexico, Estados Unidos Mexicanos, Méjico, México", @country.alternate_names 
     end

@@ -1,8 +1,6 @@
 # encoding: UTF-8
 
-
 namespace :metropoli do
-  
   desc 'Seeds the city database with the csv files in db/csv'
 
   task :seed => :environment do 

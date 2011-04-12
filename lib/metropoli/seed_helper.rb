@@ -10,6 +10,7 @@ module Metropoli
         
         state_data['cities'].map! do |city_data|
           set_alt_names_for city_data
+          city_data.delete_if { |k,v| v.blank? }
           CityModel.new city_data
         end
 
@@ -17,6 +18,7 @@ module Metropoli
       end
 
       set_alt_names_for country_data
+      country_data.delete_if{ |k,v| v.blank? }
       CountryModel.create country_data
     end
 

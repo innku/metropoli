@@ -1,40 +1,51 @@
+# -*- encoding: utf-8 -*-
 require 'helper'
 
-class TestCountry < ActiveSupport::TestCase
-  
+class TestCountry < Test::Unit::TestCase
+  include Metropoli
+  extend Shoulda::ActiveRecord::Matchers
+
   def setup
-    nle = Factory(:country)
-    jal = Factory(:country, :name => 'Bolivia')
+    @mexico  = CountryModel.find_by_name('Mexico')
+    @bolivia = CountryModel.find_by_name('Bolivia')
+    @shoulda_subject = CountryModel.new
   end
-  
-  test 'like method should find countries by name' do
-    assert_equal Metropoli::CountryModel.like('Mexico').count, 1
-    assert_equal Metropoli::CountryModel.like('Bol').count, 1
+
+  should have_many(:states).dependent(:destroy)
+
+  context 'quering countries' do
+    should 'find country by name' do
+      assert_equal [@mexico],  CountryModel.like('Mexico') 
+      assert_equal [@bolivia], CountryModel.like('Bolivia')
+    end
+
+    should 'find country by incomplete name' do
+      assert_equal [@mexico],  CountryModel.like('Mex') 
+      assert_equal [@bolivia], CountryModel.like('Bol')
+    end
+
+    should 'find all countries with blank query' do
+      assert_equal [@mexico, @bolivia], Metropoli::CountryModel.like('') 
+      assert_equal [@mexico, @bolivia], Metropoli::CountryModel.like(nil) 
+    end
+
+    should 'find country by alternate name' do
+      assert_equal [@mexico], CountryModel.like('México')
+      assert_equal [@mexico], CountryModel.like('Méjico')
+    end
+
+    should 'find country by iso code' do
+      assert_equal [@mexico], CountryModel.like('MX')
+    end
   end
-  
-  test 'like method should find countries with %' do
-    assert_equal Metropoli::CountryModel.like('bo').count, 1
+
+  context 'representations' do
+    should 'emit json' do
+      skip
+    end
+
+    should 'have custom format for #to_s' do
+      skip
+    end
   end
-  
-  test 'like method should return all countries with blank' do
-    assert_equal Metropoli::CountryModel.like('').count, Metropoli::CountryModel.count
-  end
-  
-  test 'like method should return all countries with nil' do
-    assert_equal Metropoli::CountryModel.like(nil).count, Metropoli::CountryModel.count
-  end
-  
-  test 'autocomplete method should find states with name' do
-    assert_equal Metropoli::CountryModel.autocomplete('Mexico').count, 1
-    assert_equal Metropoli::CountryModel.autocomplete('Boli').count, 1
-  end
-  
-  test 'autocomplete method should return all countries with blank' do
-    assert_equal Metropoli::CountryModel.autocomplete('').count, Metropoli::CountryModel.count
-  end
-  
-  test 'autocomplete method should return all countries with nil' do
-    assert_equal Metropoli::CountryModel.autocomplete(nil).count, Metropoli::CountryModel.count
-  end
-  
 end

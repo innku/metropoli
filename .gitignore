@@ -1,23 +1,4 @@
-## MAC OS
-.DS_Store
-
-## TEXTMATE
-*.tmproj
-tmtags
-
-## EMACS
-*~
-\#*
-.\#*
-
-## VIM
+pkg/*
+*.gem
+.bundle
 *.swp
-
-## PROJECT::GENERAL
-coverage
-rdoc
-pkg
-
-## PROJECT::SPECIFIC
-# To avoid conflicts between gem versions
-test/test_app/Gemfile.lock

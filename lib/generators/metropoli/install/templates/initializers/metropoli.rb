@@ -1,5 +1,5 @@
 Metropoli.setup do |config|
-  
+  #
   ## Uncomment and change if your want to extend behaviour of a class
   ## with your own class
   ##

@@ -5,6 +5,7 @@ ActiveRecord::Schema.define(:version => 1) do
   create_table :countries do |t|
     t.string :name
     t.string :alternate_names
+    t.string :iso
     t.string :abbr
   end
 
@@ -22,5 +23,24 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer :population
     t.string  :alternate_names
     t.string  :name
+  end
+  
+  create_table :users do |t|
+    t.string :name
+  end
+
+  create_table :cities_users, :id =>false do |t|
+    t.integer :city_id
+    t.integer :user_id
+  end
+
+  create_table :states_users, :id =>false do |t|
+    t.integer :state_id
+    t.integer :user_id
+  end
+
+  create_table :countries_users, :id =>false do |t|
+    t.integer :country_id
+    t.integer :user_id
   end
 end
