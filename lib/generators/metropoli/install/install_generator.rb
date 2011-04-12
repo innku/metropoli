@@ -2,8 +2,8 @@ module Metropoli
   module Generators
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
-      class_option  :skip_demo,       :type => :boolean, :default => false
-      class_option  :with_jq,         :type => :boolean, :default => false 
+      class_option  :countries, :type => :array,   :default => %(MX US), :desc => "List of countries to seed database with, you can select any number of pass 'all', run rake metropoli:countries to see a listing of available countries"
+      class_option  :with_jq,   :type => :boolean, :default => false,    :desc => "Copy autocompletion jQuery script"
       
       source_root File.expand_path('../templates',__FILE__)
       
@@ -33,11 +33,12 @@ module Metropoli
         copy_file 'initializers/metropoli.rb', 'config/initializers/metropoli.rb' 
       end
       
-      def generate_demo_seed
-        unless options.skip_demo?
-          copy_file 'csv/countries.csv', 'db/csv/countries.csv' 
-          copy_file 'csv/states.csv', 'db/csv/states.csv' 
-          copy_file 'csv/cities.csv', 'db/csv/cities.csv' 
+      def generate_yaml_seeds
+        countries = options.countries == ['all'] ? Metropoli::COUNTRIES.keys : options.countries
+        options.countries.each do |country|
+          country = Metropoli::COUNTRIES[country].parameterize rescue raise("#{country} is not registered, run rake metropoli:countries to see a list of available countries")
+          say ("Downloading #{country}.yml, this could take a while")
+          get "https://github.com/innku/metropoli_places/raw/master/data/#{country}.yml", "db/metropoli_seeds/#{country}.yml"
         end
       end
       
