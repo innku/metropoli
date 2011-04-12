@@ -1,15 +1,10 @@
 --- 
 name: Mexico
 names_en: 
-  - "Mexican Republic"
-  - "United Mexican States"
   - Mexico
 names_es: 
   - "Estados Unidos Mexicanos"
   - Méjico
-  - "República Mejicana"
-  - "el país azteca"
-  - "Nueva España"
   - México
 regions: 
   - 

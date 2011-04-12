@@ -3,6 +3,8 @@ class CreateMetropoliStates < ActiveRecord::Migration
     
     create_table :states do |t|
       t.integer :country_id
+      t.string  :ascii_name
+      t.string  :alternate_names
       t.string  :name
       t.string  :abbr
     end

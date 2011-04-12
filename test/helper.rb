@@ -4,8 +4,9 @@ require 'rubygems'
 require 'factory_girl'
 require 'factories'
 require 'test/unit'
-require "test_app/config/environment"
-require "rails/test_help"
+require 'shoulda'
+require 'test_app/config/environment'
+require 'rails/test_help'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))

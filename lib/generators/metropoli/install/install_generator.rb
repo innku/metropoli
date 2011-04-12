@@ -2,7 +2,7 @@ module Metropoli
   module Generators
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
-      class_option  :countries, :type => :array,   :default => %(MX US), :desc => "List of countries to seed database with, you can select any number of pass 'all', run rake metropoli:countries to see a listing of available countries"
+      class_option  :countries, :type => :array,   :default => %w(MX US), :desc => "List of countries to seed database with, you can select any number of pass 'all', run rake metropoli:countries to see a listing of available countries"
       class_option  :with_jq,   :type => :boolean, :default => false,    :desc => "Copy autocompletion jQuery script"
       
       source_root File.expand_path('../templates',__FILE__)

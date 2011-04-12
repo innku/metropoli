@@ -3,6 +3,7 @@ class CreateMetropoliCountries < ActiveRecord::Migration
     
     create_table :countries do |t|
       t.string :name
+      t.string :alternate_names
       t.string :abbr
     end
     
