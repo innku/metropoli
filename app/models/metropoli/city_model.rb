@@ -6,10 +6,9 @@ module Metropoli
     
     extend StatementHelper
     extend ConfigurationHelper
-    
 
     def to_s
-      "#{self.name}, #{self.state.name}, #{self.country.abbr}"
+      "#{self.name}, #{self.state.name}, #{self.country.iso}"
     end
     
     def metropoli_json
@@ -18,19 +17,20 @@ module Metropoli
                    :methods => [:to_s])
     end
 
-    def self.autocomplete(string)
-      city, state, country = string.to_s.split(',').map(&:strip)
-
-      results = like(city)
-      results = results.includes(:state => :country)
-
-      if !country.blank?
-        results = results.merge country_class.like(country).merge(state_class.like(state)) 
-      elsif !state.blank?
-        results = results.merge state_class.like(state)
+    class << self
+      def autocomplete(string)
+        city, state, country = string.to_s.split(',').map(&:strip)
+        like(city).includes(:state => :country).merge( country_class.like(country).merge(state_class.like(state)) ).order('population desc')
       end
 
-      results.order('population desc')
+      def by_string(string)
+        city, state, country = string.to_s.split(',').map(&:strip)
+
+        results = is(city).includes(:state => :country)
+        results = results.merge state_class.is(state)     if state
+        results = results.merge country_class.is(country) if country
+        results
+      end
     end
   end
 end

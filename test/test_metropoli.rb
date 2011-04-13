@@ -33,5 +33,4 @@ class TestMetropoli < ActiveSupport::TestCase
   def teardown
     Metropoli::Helpers.return_to_defaults
   end
-  
 end

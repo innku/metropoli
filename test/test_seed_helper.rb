@@ -19,7 +19,7 @@ class TestSeedHelper < Test::Unit::TestCase
     end
 
     should 'save states' do
-      assert_equal 32, StateModel.count
+      assert_equal 41, StateModel.count
       assert_equal 32, @country.states.size
     end
 

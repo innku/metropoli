@@ -16,6 +16,7 @@ module Metropoli
   
     class << self
       alias :autocomplete :like
+      alias :by_string :is
     end
   end
 end

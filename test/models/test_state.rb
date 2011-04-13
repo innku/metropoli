@@ -32,6 +32,27 @@ class TestState < ActiveSupport::TestCase
       assert_equal StateModel.count, StateModel.like('').count
     end
 
+    context 'finding by string' do
+      should 'find city by its string representation' do
+        assert_equal [@yucatan], StateModel.by_string(@yucatan.to_s)
+        assert_equal [@yucatan], StateModel.by_string("Yucatán")
+      end
+
+      should 'use autocomplete fields' do
+        assert_equal [@yucatan], StateModel.by_string('Yucatán, MX')
+      end
+
+      should 'not allow incomplete names' do
+        assert_equal 0, StateModel.by_string('Yuca, MX').count
+        assert_equal 0, StateModel.by_string('Yucatán, M').count
+      end
+
+      should 'not return no results if passing blank' do
+        assert_equal 0, StateModel.by_string('').count
+        assert_equal 0, StateModel.by_string(nil).count
+      end
+    end
+
     context 'autocomplete' do
       should 'find states without country' do
         assert_equal [@nuevo_leon], StateModel.autocomplete('Nuevo León')

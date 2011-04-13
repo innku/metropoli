@@ -37,6 +37,23 @@ class TestCountry < Test::Unit::TestCase
     should 'find country by iso code' do
       assert_equal [@mexico], CountryModel.like('MX')
     end
+
+    context 'finding by string' do
+      should 'find city by its string representation' do
+        assert_equal [@mexico], CountryModel.is("Mexico")
+        assert_equal [@mexico], CountryModel.is("MX")
+      end
+
+      should 'not allow incomplete names' do
+        assert_equal 0, CountryModel.by_string('M').count
+        assert_equal 0, CountryModel.by_string('Mexi').count
+      end
+
+      should 'not return no results if passing blank' do
+        assert_equal 0, CountryModel.by_string('').count
+        assert_equal 0, CountryModel.by_string(nil).count
+      end
+    end
   end
 
   context 'representations' do

@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(:version => 1) do
   end
   
   create_table :users do |t|
-    t.string :name
+    t.string  :name
+    t.integer :country_id
+    t.integer :state_id
+    t.integer :city_id
   end
 
   create_table :cities_users, :id =>false do |t|

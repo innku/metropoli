@@ -40,6 +40,29 @@ class TestCity < ActiveSupport::TestCase
       assert_equal CityModel.count, CityModel.like(nil).count
     end
 
+    context 'finding by string' do
+      should 'find city by its string representation' do
+        assert_equal [@monterrey], CityModel.by_string(@monterrey.to_s)
+        assert_equal [@monterrey], CityModel.by_string("Monterrey, Nuevo León")
+        assert_equal [@monterrey], CityModel.by_string("Monterrey")
+      end
+
+      should 'use autocomplete fields' do
+        assert_equal [@monterrey], CityModel.by_string('Monterrey, Nuevo Leon, MX')
+      end
+
+      should 'not allow incomplete names' do
+        assert_equal 0, CityModel.by_string('Monter, Nuevo Leon, MX').count
+        assert_equal 0, CityModel.by_string('Monterrey, Nuevo Le, MX').count
+        assert_equal 0, CityModel.by_string('Monterrey, Nuevo Leon, M').count
+      end
+
+      should 'not return no results if passing blank' do
+        assert_equal 0, CityModel.by_string('').count
+        assert_equal 0, CityModel.by_string(nil).count
+      end
+    end
+
     context 'autocomplete' do
       should 'find cities with state' do
         assert_equal [@monterrey], CityModel.autocomplete('Monterrey, Nuevo Leon')

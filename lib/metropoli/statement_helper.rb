@@ -2,12 +2,10 @@
 
 module Metropoli
   module StatementHelper
-    def autocomplete_fields
-      Metropoli.send("#{class_name}_autocomplete_fields").split(',').map(&:strip)
-    end
+    extend ConfigurationHelper
 
-    def class_name
-      model_name.to_s.gsub(/Metropoli::|Model/, '').to_s.downcase
+    def autocomplete_fields
+      Metropoli.send("#{table_name.singularize}_autocomplete_fields").split(',').map(&:strip)
     end
 
     def like(name)
@@ -16,9 +14,8 @@ module Metropoli
     end
 
     def is(name)
-      return where(arel_table[:id].gt(0)) if name.blank?
+      return where(arel_table[:id].lt(0)) if name.blank? # no models
       where autocomplete_fields.inject(arel_table[:name].eq(name)) { |query, field| query.or arel_table[field].eq(name)  }
     end
-
   end
 end
