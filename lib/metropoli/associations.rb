@@ -24,7 +24,7 @@ module Metropoli
           collection = relation_class.by_string(attr_value)
           write_attribute "#{relation_name}_name", attr_value
           write_attribute relation_collector, collection
-          send "#{relation_name}=", (collection.size == 1 ? collection.first : nil)
+          send "#{relation_name}=", (collection.count == 1 ? collection.first : nil)
         end
 
         define_method "#{relation_name}_name" do
@@ -39,8 +39,8 @@ module Metropoli
         validate do |record| # not dependent on required or required_if, is it right?
           collection = record.read_attribute(relation_collector)
           unless collection.nil?
-            record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :found_too_many)) if (collection.size > 1)
-            record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :couldnt_find))   if (collection.size == 0)
+            record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :found_too_many)) if (collection.count > 1)
+            record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :couldnt_find))   if (collection.count == 0)
           end
         end
       end

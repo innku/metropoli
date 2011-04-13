@@ -1,121 +1,145 @@
+# -*- encoding: utf-8 -*-
 require 'helper'
 
 class TestMetropoliForMany < ActiveSupport::TestCase
-  # def setup
-  #   @user_class = User
-  #   @mty = Factory(:city)
-  # end
-  # 
-  # test 'it should associate with cities when called' do
-  #   @user_class.metropoli_for_many  :cities
-  #   new_user = @user_class.new
-  #   assert new_user.cities.empty?
-  # end
-  # 
-  # test 'it should associate with metropoli when called with alias' do
-  #   @user_class.metropoli_for_many  :cities, :as => :origins
-  #   new_user = @user_class.new
-  #   assert new_user.origins.empty?
-  # end
-  # 
-  # test 'it should add a metropoli location to the model model when found' do
-  #   @user_class.metropoli_for_many  :cities
-  #   @user_class.metropoli_for_many  :states
-  #   @user_class.metropoli_for_many  :countries
-  #   new_user = @user_class.new
-  #   
-  #   assert_difference('new_user.cities.size') do
-  #     new_user.add_city 'Monterrey'
-  #   end
-  #   
-  #   assert_difference('new_user.states.size') do
-  #     new_user.add_state 'Nuevo Leon'
-  #   end
-  #   
-  #   assert_difference('new_user.countries.size') do
-  #     new_user.add_country 'Mexico'
-  #   end
-
-  # end
-  # 
-  # test 'it shouldnt add a metropoli location to the model model when not found' do
-  #   @user_class.metropoli_for_many  :cities
-  #   @user_class.metropoli_for_many  :states
-  #   @user_class.metropoli_for_many  :countries
-  #   new_user = @user_class.new
-  #   
-  #   assert_no_difference('new_user.cities.size') do
-  #     new_user.add_city 'Invalid city'
-  #   end
-  #   
-  #   assert_no_difference('new_user.states.size') do
-  #     new_user.add_state 'Invalid state'
-  #   end
-  #   
-  #   assert_no_difference('new_user.countries.size') do
-  #     new_user.add_country 'Invalid country'
-  #   end
-  # end
-  # 
-  # test 'it should remove a metropoli from the model when not found' do
-  #   @user_class.metropoli_for_many  :cities
-  #   new_user = @user_class.new
-  #   new_user.cities << @mty
-  #   assert_difference('new_user.cities.size', -1) do
-  #     new_user.remove_city 'Monterrey'
-  #   end
-  # end
-  # 
-  # test 'it shouldnt remove a metropoli from the model when not found' do
-  #   @user_class.metropoli_for_many  :states
-  #   new_user = @user_class.new
-  #   new_user.states << @mty.state
-  #   assert_no_difference('new_user.states.size') do
-  #     new_user.remove_state 'Invalid state'
-  #   end
-  # end
-  # 
-  # test 'it shouldnt add a model if its already there and metropoli specifies unique' do
-  #   @user_class.metropoli_for_many  :countries, :unique => true
-  #   new_user = @user_class.new
-  #   new_user.countries << @mty.country
-  #   assert_no_difference('new_user.states.size') do
-  #     new_user.add_country 'Mexico'
-  #   end
-  # end
-  # 
-  # test 'it should be invalid if metropoli is required and not added' do
-  #   @user_class.metropoli_for_many  :states, :required => true
-  #   new_user = @user_class.new
-  #   assert !new_user.valid?
-  #   assert new_user.errors[:states].include?(Metropoli::Messages.error(:state, :not_enough))
-  # end
-  # 
-  # test 'it should be invalid has a non reached min value' do
-  #   @user_class.metropoli_for_many  :cities, :required => true, :min => 2
-  #   new_user = @user_class.new
-  #   new_user.cities << @mty
-  #   assert_equal 1, new_user.cities.size
-  #   assert !new_user.valid?
-  #   assert new_user.errors[:cities].include?(Metropoli::Messages.error(:city, :not_enough))
-  # end
-  # 
-  # test 'it should be invalid has an outreached max value' do
-  #   @user_class.metropoli_for_many  :cities, :required => true, :max => 2
-  #   new_user = @user_class.new
-  #   new_user.cities = (1..3).map { Factory(:city) }
-  #   assert_equal 3, new_user.cities.size
-  #   assert !new_user.valid?
-  #   assert new_user.errors[:cities].include?(Metropoli::Messages.error(:city, :too_many))
-  # end
-  # 
-  # test 'it should valid if its within the limits' do
-  #   @user_class.metropoli_for_many  :cities, :required => true, :max => 2
-  #   new_user = @user_class.new
-  #   new_user.cities = (1..2).map { Factory(:city) }
-  #   assert_equal 2, new_user.cities.size
-  #   new_user.valid?
-  #   assert new_user.errors[:cities].empty?
-  # end
+  include Metropoli
+  extend Shoulda::ActiveRecord::Matchers
   
+  context 'metropoli association with many' do
+    setup do
+      Object.remove_const(:User) if Object.const_defined? :User
+      class User < ActiveRecord::Base
+        def true; true end
+        def false; false end
+      end
+      @monterrey  = CityModel.find_by_name('Monterrey')
+      @nuevo_leon = StateModel.find_by_name('Nuevo León')
+      @mexico     = CountryModel.find_by_name('Mexico')
+    end
+
+    context 'without options' do
+      setup do
+        User.metropoli_for_many  :cities
+        User.metropoli_for_many  :states
+        User.metropoli_for_many  :countries
+        @user = @shoulda_subject = User.new
+      end
+
+      should have_and_belong_to_many :cities
+      should have_and_belong_to_many :states
+      should have_and_belong_to_many :countries
+
+      should 'build associations' do
+        assert_equal Metropoli::CityModel,    @user.cities.build.class    
+        assert_equal Metropoli::StateModel,   @user.states.build.class   
+        assert_equal Metropoli::CountryModel, @user.countries.build.class 
+      end
+
+      context 'assigning by name' do
+        setup do
+          @user.add_country 'Mexico'
+          @user.add_state 'Nuevo León'
+          @user.add_city 'Monterrey'
+        end
+
+        should 'assign relationship by name' do
+          assert_equal [@mexico], @user.countries
+          assert_equal [@nuevo_leon], @user.states
+          assert_equal [@monterrey], @user.cities
+        end
+
+        should 'not assign if non existant' do
+          @user.add_country 'invalid'
+          @user.add_state 'invalid'
+          @user.add_city 'invalid'
+          assert_equal [@mexico], @user.countries
+          assert_equal [@nuevo_leon], @user.states
+          assert_equal [@monterrey], @user.cities
+        end
+
+        should 'remove associations' do
+          @user.remove_country 'Mexico'
+          @user.remove_state 'Nuevo León'
+          @user.remove_city 'Monterrey'
+          assert_blank @user.countries
+          assert_blank @user.states
+          assert_blank @user.cities
+        end
+
+        should 'not remove if not present' do
+          @user.remove_country 'invalid'
+          @user.remove_state 'invalid'
+          @user.remove_city 'invalid'
+          assert_equal [@mexico], @user.countries
+          assert_equal [@nuevo_leon], @user.states
+          assert_equal [@monterrey], @user.cities
+        end
+
+        # test 'it shouldnt add a model if its already there and metropoli specifies unique' do
+        #   @user_class.metropoli_for_many  :countries, :unique => true
+        #   new_user = @user_class.new
+        #   new_user.countries << @mty.country
+        #   assert_no_difference('new_user.states.size') do
+        #     new_user.add_country 'Mexico'
+        #   end
+        # end
+      end
+    end
+
+    context 'with alias' do
+      setup do
+        User.metropoli_for_many  :cities,    :as => :towns
+        User.metropoli_for_many  :states,    :as => :regions
+        User.metropoli_for_many  :countries, :as => :nations
+        @user = @shoulda_subject = User.new
+      end
+
+      should 'build associations' do
+        assert_equal Metropoli::CityModel,    @user.towns.build.class    
+        assert_equal Metropoli::StateModel,   @user.regions.build.class   
+        assert_equal Metropoli::CountryModel, @user.nations.build.class 
+      end
+
+      should 'assign relationship by name' do
+        @user.add_nation 'Mexico'
+        @user.add_region 'Nuevo León'
+        @user.add_town 'Monterrey'
+        assert_equal [@mexico], @user.nations
+        assert_equal [@nuevo_leon], @user.regions
+        assert_equal [@monterrey], @user.towns
+      end
+    end
+    
+    context 'validations' do
+      should 'be valid within range' do
+        User.metropoli_for_many  :cities, :required => true, :max => 2
+        user = User.new :cities => CityModel.limit(2)
+        assert_equal 2, user.cities.size
+        assert user.valid?
+      end
+
+      should 'validate max city count' do
+        User.metropoli_for_many  :cities, :required => true, :max => 2
+        user = User.new :cities => CityModel.limit(3)
+        assert_equal 3, user.cities.size
+        assert !user.valid?
+        assert user.errors[:cities].include?(Metropoli::Messages.error(:city, :too_many))
+      end
+
+      should 'be invalid if metropoli is required and not added' do
+        User.metropoli_for_many  :cities, :required => true
+        user = User.new
+        assert !user.valid?
+        assert user.errors[:cities].include?(Metropoli::Messages.error(:city, :not_enough))
+      end
+
+      should 'validate min count' do
+        User.metropoli_for_many  :cities, :required => true, :min => 2
+        user = User.new :cities => CityModel.limit(1)
+        assert_equal 1, user.cities.size
+        assert !user.valid?
+        assert user.errors[:cities].include?(Metropoli::Messages.error(:city, :not_enough))
+      end
+    end
+  end
 end
