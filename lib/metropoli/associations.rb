@@ -48,57 +48,45 @@ module Metropoli
       def metropoli_for_many(metropoli_model, args = {})
         metropoli_relation  = metropoli_model.to_s.singularize
         relation_class_name = ConfigurationHelper.relation_class_for(metropoli_model)
-        relation_name       = (args[:as] ? args[:as].to_s : nil) || ConfigurationHelper.relation_name_for(metropoli_model.to_s, 'has_many')
-        relation_class      = eval(relation_class_name)
+        relation_name       = args[:as] ? args[:as].to_s : ConfigurationHelper.relation_name_for(metropoli_model.to_s, 'has_many')
+        relation_class      = relation_class_name.constantize
         joint_table         = [self.table_name, relation_class.table_name].sort.join('_')
 
         self.has_and_belongs_to_many relation_name.to_sym, :class_name => relation_class_name, 
           :join_table => joint_table,
-          :association_foreign_key => "#{relation_name.singularize}_id"
+          :association_foreign_key => "#{relation_name.singularize}_id",
+          :uniq => args[:uniq]
 
         define_method "add_#{relation_name.singularize}" do |attr_value|
           results = relation_class.by_string(attr_value)
-          collection = send("#{relation_name}")
-          if (results.count == 1)
-            element = results.first
-            unless (args[:unique] and collection.include?(element))
-              collection << results.first
-              return element
-            end
+          if results.count == 1
+            send(relation_name) << element = results.first
+            element
           end
-          nil
         end
 
         define_method "remove_#{relation_name.singularize}" do |attr_value|
           results = relation_class.by_string(attr_value)
           if results.count == 1
-            send("#{relation_name}").delete(results.first)
-            results.first
-          else
-            nil
+            send("#{relation_name}").delete(element = results.first)
+            element
           end
         end
 
         if args[:required]
-          validate do |record|
-            min = args[:min] || 1
-            collection = record.send(relation_name)
-
-            if collection.size < min
-              record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :not_enough))
-            end
-
-            if (args[:max] and (collection.size > args[:max].to_i))
-              record.errors.add(relation_name, Metropoli::Messages.error(metropoli_relation, :too_many))
-            end
-
-          end
+          opts = {
+            :minimum => args[:min] || 1,
+            :maximum => args[:max],
+            :too_short => Metropoli::Messages.error(metropoli_relation, :not_enough),
+            :too_long  => Metropoli::Messages.error(metropoli_relation, :too_many)
+          }
+          opts.delete_if { |k,v| v.nil? }
+          validates_length_of relation_name, opts
         end      
       end
 
     end
   end
-  
 end
 
 ActiveRecord::Base.send :include, Metropoli::Associations

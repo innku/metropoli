@@ -75,14 +75,17 @@ class TestMetropoliForMany < ActiveSupport::TestCase
           assert_equal [@monterrey], @user.cities
         end
 
-        # test 'it shouldnt add a model if its already there and metropoli specifies unique' do
-        #   @user_class.metropoli_for_many  :countries, :unique => true
-        #   new_user = @user_class.new
-        #   new_user.countries << @mty.country
-        #   assert_no_difference('new_user.states.size') do
-        #     new_user.add_country 'Mexico'
-        #   end
+        # should 'allow repeated if not passing unique' do
+        #   User.metropoli_for_many :countries
+        #   @user.countries << @mexico
+        #   assert_equal [@mexico]*2, @user.countries
         # end
+
+        should 'not add a model if its already there and metropoli specifies unique' do
+          User.metropoli_for_many :countries, :unique => true
+          @user.countries << @mexico
+          assert_equal [@mexico], @user.countries
+        end
       end
     end
 
