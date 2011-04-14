@@ -58,11 +58,12 @@ class TestCountry < Test::Unit::TestCase
 
   context 'representations' do
     should 'emit json' do
-      skip
+      assert_equal %({"country":{"id":#{@mexico.id},"to_s":"Mexico"}}), @mexico.to_json
     end
 
     should 'have custom format for #to_s' do
-      skip
+      assert_equal "Mexico", @mexico.text
+      assert_equal "Mexico", @mexico.to_s
     end
   end
 end

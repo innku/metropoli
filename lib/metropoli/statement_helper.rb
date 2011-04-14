@@ -2,7 +2,7 @@
 
 module Metropoli
   module StatementHelper
-    extend ConfigurationHelper
+    include ConfigurationHelper
 
     def autocomplete_fields
       Metropoli.send("#{table_name.singularize}_autocomplete_fields").split(',').map(&:strip)

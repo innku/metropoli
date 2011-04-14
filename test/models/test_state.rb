@@ -91,11 +91,12 @@ class TestState < ActiveSupport::TestCase
   
   context 'representations' do
     should 'emit json' do
-      skip
+      assert_equal %({"state":{"id":#{@nuevo_leon.id},"to_s":"Nuevo Le\\u00f3n, Mexico"}}), @nuevo_leon.to_json
     end
 
     should 'have custom format for #to_s' do
-      skip
+      assert_equal "Nuevo León, Mexico", @nuevo_leon.text
+      assert_equal "Nuevo León, Mexico", @nuevo_leon.to_s
     end
   end
 end

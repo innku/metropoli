@@ -5,10 +5,8 @@ module ActionDispatch::Routing
     end
     
     protected
-    
     def resource_route(resource_name)
       self.match "#{resource_name}.json" => Metropoli::Api
     end
-    
   end
 end

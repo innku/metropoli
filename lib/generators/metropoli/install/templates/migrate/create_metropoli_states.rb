@@ -1,6 +1,5 @@
 class CreateMetropoliStates < ActiveRecord::Migration
   def self.up
-    
     create_table :states do |t|
       t.integer :country_id
       t.string  :ascii_name

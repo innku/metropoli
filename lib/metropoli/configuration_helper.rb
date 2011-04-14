@@ -2,17 +2,18 @@ module Metropoli
   module ConfigurationHelper
     protected
     def city_class
-      eval(Metropoli.city_class)
+      Metropoli.city_class.constantize
     end
     
     def state_class
-      eval(Metropoli.state_class)
+      Metropoli.state_class.constantize
     end
     
     def country_class
-      eval(Metropoli.country_class)
+      Metropoli.country_class.constantize
     end
     
+    # not used
     def city_json_values
       Metropoli.city_autocomplete_fields.split(',').map(&:strip).map(&:to_sym)
     end
@@ -52,16 +53,8 @@ module Metropoli
     end
     
     def self.relation_name_for(related_class, relation_type = 'belongs_to')
-      if !related_class.nil?
-        related_class.downcase
-      else
-        if relation_type == 'belongs_to'
-          return'city'
-        else
-          return 'cities'
-        end
-      end
+      return related_class.downcase unless related_class.nil?
+      relation_type == 'belongs_to' ? 'city' : 'cities'
     end
-    
   end
 end

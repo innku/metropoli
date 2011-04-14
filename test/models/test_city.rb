@@ -57,7 +57,7 @@ class TestCity < ActiveSupport::TestCase
         assert_equal 0, CityModel.by_string('Monterrey, Nuevo Leon, M').count
       end
 
-      should 'not return no results if passing blank' do
+      should 'return no results if passing blank' do
         assert_equal 0, CityModel.by_string('').count
         assert_equal 0, CityModel.by_string(nil).count
       end
@@ -82,7 +82,7 @@ class TestCity < ActiveSupport::TestCase
       end
 
       should 'not find if state is not correct' do
-        assert_equal 0, CityModel.autocomplete('Monterrey, Nuevo Leon, Cuba').count
+        assert_equal 0, CityModel.autocomplete('Monterrey, Nuevo Leon, Bolivia').count
       end
 
       should 'find all cities when query is blank' do
@@ -98,11 +98,12 @@ class TestCity < ActiveSupport::TestCase
 
   context 'representations' do
     should 'emit json' do
-      skip
+      assert_equal %({"city":{"id":#{@monterrey.id},"to_s":"Monterrey, Nuevo Le\\u00f3n, MX"}}), @monterrey.to_json
     end
 
     should 'have custom format for #to_s' do
-      skip
+      assert_equal "Monterrey, Nuevo León, MX", @monterrey.text
+      assert_equal "Monterrey, Nuevo León, MX", @monterrey.to_s
     end
   end
 end
