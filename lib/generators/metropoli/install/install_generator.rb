@@ -38,7 +38,7 @@ module Metropoli
         options.countries.each do |country|
           country = Metropoli::COUNTRIES[country].parameterize rescue raise("#{country} is not registered, run rake metropoli:countries to see a list of available countries")
           say ("Downloading #{country}.yml, this could take a while")
-          get "https://github.com/innku/metropoli_places/raw/master/data/#{country}.yml", "db/metropoli_seeds/#{country}.yml"
+          get "https://github.com/innku/metropoli_places/raw/master/data/#{country}.yml", "tmp/metropoli_seed/#{country}.yml"
         end
       end
       

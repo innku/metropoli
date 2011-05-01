@@ -5,7 +5,7 @@ namespace :metropoli do
 
   task :seed => :environment do 
     include Metropoli::SeedHelper
-    Dir.glob(Rails.root.join('db', 'metropoli_seeds', '*')).each { |file| seed_from_yaml file }
+    Dir.glob(Rails.root.join('tmp', 'metropoli_seed', '*')).each { |file| seed_from_yaml file }
   end
   
   desc 'Cleans up the city database in case of error'
