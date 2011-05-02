@@ -14,15 +14,15 @@ module Metropoli
       end
       
       def generate_countries
-        migration_template 'migrate/create_metropoli_countries.rb', 'db/migrate/create_metropoli_countries.rb'
+        migration_template 'migrate/1_create_metropoli_countries.rb', 'db/migrate/create_metropoli_countries.rb'
       end
       
       def generate_states
-        migration_template 'migrate/create_metropoli_states.rb', 'db/migrate/create_metropoli_states.rb'
+        migration_template 'migrate/2_create_metropoli_states.rb', 'db/migrate/create_metropoli_states.rb'
       end
       
       def generate_cities
-        migration_template 'migrate/create_metropoli_cities.rb', 'db/migrate/create_metropoli_cities.rb'
+        migration_template 'migrate/3_create_metropoli_cities.rb', 'db/migrate/create_metropoli_cities.rb'
       end
       
       def generate_locale
@@ -55,7 +55,6 @@ module Metropoli
       def show_readme
         readme 'README'
       end 
-      
     end
   end
 end

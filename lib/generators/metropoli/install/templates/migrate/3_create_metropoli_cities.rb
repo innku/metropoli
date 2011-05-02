@@ -15,5 +15,4 @@ class CreateMetropoliCities < ActiveRecord::Migration
   def self.down
     drop_table :cities
   end
-  
 end
