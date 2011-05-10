@@ -3,7 +3,7 @@ $(document).ready(function(){
 	$(".city_autocomplete").autocomplete({
 		source: function(request, response) {
 					$.ajax({
-						url: "/cities.json",
+						url: "/auto-complete/cities.json",
 						dataType: "json",
 						data: {	q: request.term	},
 						success: function(data) {
@@ -27,7 +27,7 @@ $(document).ready(function(){
 	$(".state_autocomplete").autocomplete({
 		source: function(request, response) {
 					$.ajax({
-						url: "/states.json",
+						url: "/auto-complete/states.json",
 						dataType: "json",
 						data: {	q: request.term	},
 						success: function(data) {
@@ -51,7 +51,7 @@ $(document).ready(function(){
 	$(".country_autocomplete").autocomplete({
 		source: function(request, response) {
 					$.ajax({
-						url: "/countries.json",
+						url: "/auto-complete/countries.json",
 						dataType: "json",
 						data: {	q: request.term	},
 						success: function(data) {
