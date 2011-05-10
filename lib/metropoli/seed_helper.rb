@@ -1,5 +1,6 @@
 module Metropoli
   module SeedHelper
+    include ConfigurationHelper
     
     def seed_from_yaml(file)
       country_data = YAML.load_file(file)
@@ -11,15 +12,15 @@ module Metropoli
         state_data['cities'].map! do |city_data|
           set_alt_names_for city_data
           city_data.delete_if { |k,v| v.blank? }
-          CityModel.new city_data
+          city_class.new city_data
         end
 
-        StateModel.new state_data
+        state_class.new state_data
       end
 
       set_alt_names_for country_data
       country_data.delete_if{ |k,v| v.blank? }
-      CountryModel.create country_data
+      country_class.create country_data
     end
 
     private

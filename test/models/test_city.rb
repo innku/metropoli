@@ -77,8 +77,8 @@ class TestCity < ActiveSupport::TestCase
       should 'find cities with state and country' do
         assert_equal [@monterrey], CityModel.autocomplete('Monterrey, Nuevo Leon, MX')
         assert_equal [@monterrey], CityModel.autocomplete('Monterrey, Nuevo León, México')
-        assert_equal [@monterrey], CityModel.autocomplete('Monterrey, NLE, Mx')
         assert_equal [@monterrey], CityModel.autocomplete('Monterrey, NLE, México')
+        assert_equal [@monterrey], CityModel.autocomplete('Monterrey, NLE, Mx')
       end
 
       should 'not find if state is not correct' do

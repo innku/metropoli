@@ -15,7 +15,7 @@ class TestSeedHelper < Test::Unit::TestCase
     should 'save a country' do
       assert_equal 2, CountryModel.count
       assert_equal 'Mexico', @country.name
-      assert_equal "Mexico, Estados Unidos Mexicanos, Méjico, México", @country.alternate_names 
+      assert_equal "Mexican Republic, United Mexican States, Mexico, Estados Unidos Mexicanos, Méjico, República Mejicana, el país azteca, Nueva España, México", @country.alternate_names 
     end
 
     should 'save states' do
