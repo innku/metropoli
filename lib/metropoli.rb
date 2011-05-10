@@ -1,5 +1,4 @@
 module Metropoli
-  
   mattr_accessor  :country_class
   @@country_class = 'Metropoli::CountryModel'
   
@@ -32,7 +31,5 @@ module Metropoli
     require 'metropoli/seed_helper'
     require 'metropoli/associations'
     require 'metropoli/engine' 
-    require 'metropoli/api/api'
   end
-  
 end

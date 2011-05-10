@@ -6,7 +6,7 @@ module ActionDispatch::Routing
     
     protected
     def resource_route(resource_name)
-      self.match "#{resource_name}.json" => Metropoli::Api
+      self.match "auto-complete/#{resource_name}.json" => "metropoli##{resource_name}"
     end
   end
 end

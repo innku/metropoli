@@ -1,6 +1,5 @@
 module Metropoli
   module ConfigurationHelper
-    protected
     def city_class
       Metropoli.city_class.constantize
     end
@@ -13,6 +12,7 @@ module Metropoli
       Metropoli.country_class.constantize
     end
     
+    protected
     # not used
     def city_json_values
       Metropoli.city_autocomplete_fields.split(',').map(&:strip).map(&:to_sym)
