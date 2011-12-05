@@ -1,6 +1,8 @@
 module Metropoli
   module ConfigurationHelper
+    
     protected
+    
     def city_class
       eval(Metropoli.city_class)
     end

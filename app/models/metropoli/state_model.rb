@@ -37,10 +37,9 @@ module Metropoli
       "#{self.name}, #{self.country.name}"
     end
     
-    def metropoli_json
-      self.to_json(:root => :state, 
-                   :only => [:id],
-                   :methods => [:to_s])
+    def as_json(opts={})
+      opts||={}
+      super(opts.merge({:only => [:id], :methods => [:to_s]}))
     end
     
   end

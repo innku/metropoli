@@ -4,29 +4,23 @@ module Metropoli
   class Api < Sinatra::Base
     include ConfigurationHelper
   
-    get '/cities.json' do
+    get '/metropoli/cities.json' do
       @cities = city_class.autocomplete(params[:q])
       @cities = @cities.merge(city_class.limit(autocomplete_limit))
-      jsonify(@cities)
+      @cities.to_json
     end
   
-    get '/states.json' do 
+    get '/metropoli/states.json' do 
       @states = state_class.autocomplete(params[:q])
       @states = @states.merge(state_class.limit(autocomplete_limit))
-      jsonify(@states)
+      @states.to_json
     end
   
-    get '/countries.json' do
+    get '/metropoli/countries.json' do
       @countries = country_class.autocomplete(params[:q])
       @countries = @countries.merge(country_class.limit(autocomplete_limit))
-      jsonify(@countries)
+      @countries.to_json
     end
-  
-    private
-  
-    def jsonify(resource_array)
-      "[#{resource_array.all.map(&:metropoli_json).join(',').to_s}]"
-    end
-  
+    
   end
 end

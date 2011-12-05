@@ -1,9 +1,10 @@
 module Metropoli
   class CountryModel < ActiveRecord::Base
-    set_table_name  :countries
-    has_many        :states, :class_name => Metropoli.state_class, :foreign_key => :country_id
     extend StatementHelper
     extend ConfigurationHelper
+    set_table_name  :countries
+    
+    has_many        :states, :class_name => Metropoli.state_class, :foreign_key => :country_id
     
     def self.autocomplete(string='')
       self.like(string)
@@ -25,10 +26,9 @@ module Metropoli
       "#{self.name}"
     end
     
-    def metropoli_json
-      self.to_json(:root => :country, 
-                   :only => [:id],
-                   :methods => [:to_s])
+    def as_json(opts={})
+      opts||={}
+      super(opts.merge({:only => [:id], :methods => [:to_s]}))
     end
   
   end

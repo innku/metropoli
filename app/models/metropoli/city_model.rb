@@ -1,11 +1,11 @@
 module Metropoli
   class CityModel < ActiveRecord::Base    
     set_table_name  :cities
-    belongs_to      :state,   :class_name => Metropoli.state_class
-    delegate        :country, :to => :state
-    
     extend StatementHelper
     extend ConfigurationHelper
+    
+    belongs_to      :state,   :class_name => Metropoli.state_class
+    delegate        :country, :to => :state
     
     def self.autocomplete(string='')
       string||=''
@@ -50,10 +50,9 @@ module Metropoli
       "#{self.name}, #{self.state.name}, #{self.country.abbr}"
     end
     
-    def metropoli_json
-      self.to_json(:root => :city, 
-                   :only => [:id],
-                   :methods => [:to_s])
+    def as_json(opts={})
+      opts ||={}
+      super(opts.merge({ :only => [:id], :methods => [:to_s] }))
     end
   
   end

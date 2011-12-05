@@ -5,6 +5,7 @@ class CreateMetropoliStates < ActiveRecord::Migration
       t.integer :country_id
       t.string  :name
       t.string  :abbr
+      t.string  :timezone
     end
     
     add_index :states, :country_id
