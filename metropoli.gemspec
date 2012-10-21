@@ -190,16 +190,16 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, ["= 1.3.0"])
       s.add_runtime_dependency(%q<sinatra>, [">= 1.0"])
-      s.add_runtime_dependency(%q<json>, ["~> 1.4.6"])
+      s.add_runtime_dependency(%q<json>, ["~> 1.7.5"])
     else
       s.add_dependency(%q<rspec>, ["= 1.3.0"])
       s.add_dependency(%q<sinatra>, [">= 1.0"])
-      s.add_dependency(%q<json>, ["~> 1.4.6"])
+      s.add_dependency(%q<json>, ["~> 1.7.5"])
     end
   else
     s.add_dependency(%q<rspec>, ["= 1.3.0"])
     s.add_dependency(%q<sinatra>, [">= 1.0"])
-    s.add_dependency(%q<json>, ["~> 1.4.6"])
+    s.add_dependency(%q<json>, ["~> 1.7.5"])
   end
 end
 
