@@ -35,11 +35,10 @@ begin
     gem.add_dependency('sinatra', '>=1.0')
     gem.add_dependency("json", "~> 1.4.6")
     gem.add_development_dependency 'shoulda'
-    gem.add_development_dependency 'bundler'
-    gem.add_development_dependency 'rails', '3.0.0'
+    gem.add_development_dependency 'bundler' , '~> 1.0.0'
+    gem.add_development_dependency 'rails', '~> 3.0.0'
     gem.add_development_dependency 'sqlite3-ruby'
-    gem.add_development_dependency 'factory_girl', '=1.3.3'
-    gem.add_development_dependency "rspec", "=1.3.0"
+    gem.add_development_dependency 'factory_girl', '~> 1.3.3'
     gem.add_development_dependency 'debugger'
     gem.add_development_dependency 'turn'
     gem.add_development_dependency "minitest"
