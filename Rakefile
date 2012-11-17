@@ -34,6 +34,7 @@ begin
     gem.authors = ["Adrian Cuadros"]
     gem.add_dependency('sinatra', '>=1.0')
     gem.add_dependency("json", "~> 1.4.6")
+    gem.add_development_dependency 'jeweler'
     gem.add_development_dependency 'shoulda'
     gem.add_development_dependency 'bundler' , '~> 1.0.0'
     gem.add_development_dependency 'rails', '~> 3.0.0'
