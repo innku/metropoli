@@ -1,5 +1,5 @@
 TestApp::Application.routes.draw do |map|
-  metropoli_for :cities, :states, :countries
+  metropoli_for :cities, :states, :countries, :cities_and_countries
 
   root :to => "home#index"
 
