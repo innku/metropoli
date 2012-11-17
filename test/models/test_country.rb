@@ -2,11 +2,6 @@ require 'helper'
 
 class TestCountry < ActiveSupport::TestCase
   
-  def setup
-    nle = Factory(:country)
-    jal = Factory(:country, :name => 'Bolivia')
-  end
-  
   test 'like method should find countries by name' do
     assert_equal Metropoli::CountryModel.like('Mexico').count, 1
     assert_equal Metropoli::CountryModel.like('Bol').count, 1
