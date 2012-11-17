@@ -1,6 +1,8 @@
 TestApp::Application.routes.draw do |map|
   metropoli_for :cities, :states, :countries
 
+  root :to => "home#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
