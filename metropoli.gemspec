@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adrian Cuadros"]
-  s.date = "2012-11-17"
+  s.date = "2012-11-19"
   s.description = "With this engine you can generate a flexible and unobstrusive city database engine that you can relate to your rails 3 models"
   s.email = "adrian@innku.com"
   s.extra_rdoc_files = [
@@ -48,6 +48,7 @@ Gem::Specification.new do |s|
     "lib/metropoli.rb",
     "lib/metropoli/api/api.rb",
     "lib/metropoli/associations.rb",
+    "lib/metropoli/autocompleteable.rb",
     "lib/metropoli/configuration_helper.rb",
     "lib/metropoli/countries.rb",
     "lib/metropoli/engine.rb",
@@ -77,11 +78,13 @@ Gem::Specification.new do |s|
     "test/test_app/README",
     "test/test_app/Rakefile",
     "test/test_app/app/controllers/application_controller.rb",
+    "test/test_app/app/controllers/home_controller.rb",
     "test/test_app/app/helpers/application_helper.rb",
     "test/test_app/app/models/city.rb",
     "test/test_app/app/models/country.rb",
     "test/test_app/app/models/state.rb",
     "test/test_app/app/models/user.rb",
+    "test/test_app/app/views/home/index.html.erb",
     "test/test_app/app/views/layouts/application.html.erb",
     "test/test_app/config.ru",
     "test/test_app/config/application.rb",
@@ -120,16 +123,45 @@ Gem::Specification.new do |s|
     "test/test_app/public/500.html",
     "test/test_app/public/favicon.ico",
     "test/test_app/public/images/rails.png",
-    "test/test_app/public/index.html",
+    "test/test_app/public/images/ui/ui-bg_diagonals-thick_18_b81900_40x40.png",
+    "test/test_app/public/images/ui/ui-bg_diagonals-thick_20_666666_40x40.png",
+    "test/test_app/public/images/ui/ui-bg_flat_10_000000_40x100.png",
+    "test/test_app/public/images/ui/ui-bg_glass_100_f6f6f6_1x400.png",
+    "test/test_app/public/images/ui/ui-bg_glass_100_fdf5ce_1x400.png",
+    "test/test_app/public/images/ui/ui-bg_glass_65_ffffff_1x400.png",
+    "test/test_app/public/images/ui/ui-bg_gloss-wave_35_f6a828_500x100.png",
+    "test/test_app/public/images/ui/ui-bg_highlight-soft_100_eeeeee_1x100.png",
+    "test/test_app/public/images/ui/ui-bg_highlight-soft_75_ffe45c_1x100.png",
+    "test/test_app/public/images/ui/ui-icons_222222_256x240.png",
+    "test/test_app/public/images/ui/ui-icons_228ef1_256x240.png",
+    "test/test_app/public/images/ui/ui-icons_ef8c08_256x240.png",
+    "test/test_app/public/images/ui/ui-icons_ffd27a_256x240.png",
+    "test/test_app/public/images/ui/ui-icons_ffffff_256x240.png",
     "test/test_app/public/javascripts/application.js",
-    "test/test_app/public/javascripts/controls.js",
-    "test/test_app/public/javascripts/dragdrop.js",
-    "test/test_app/public/javascripts/effects.js",
+    "test/test_app/public/javascripts/jquery-1.8.3.min.js",
+    "test/test_app/public/javascripts/jquery-ui-1.9.1.custom.min.js",
     "test/test_app/public/javascripts/metropoli.jquery.ui.js",
     "test/test_app/public/javascripts/prototype.js",
     "test/test_app/public/javascripts/rails.js",
     "test/test_app/public/robots.txt",
     "test/test_app/public/stylesheets/.gitkeep",
+    "test/test_app/public/stylesheets/jquery-ui-1.9.1.custom.css",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-bg_flat_10_000000_40x100.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-icons_222222_256x240.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-icons_228ef1_256x240.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-icons_ef8c08_256x240.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-icons_ffd27a_256x240.png",
+    "test/test_app/public/stylesheets/ui-lightness/images/ui-icons_ffffff_256x240.png",
+    "test/test_app/public/stylesheets/ui-lightness/jquery-ui-1.9.1.custom.css",
+    "test/test_app/public/stylesheets/ui-lightness/jquery-ui-1.9.1.custom.min.css",
     "test/test_app/script/rails",
     "test/test_app/test/performance/browsing_test.rb",
     "test/test_app/test/test_helper.rb",
@@ -168,6 +200,15 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<debugger>, [">= 0"])
       s.add_development_dependency(%q<turn>, [">= 0"])
       s.add_development_dependency(%q<minitest>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<rails>, ["~> 3.0.0"])
+      s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
+      s.add_development_dependency(%q<factory_girl>, ["~> 1.3.3"])
+      s.add_development_dependency(%q<debugger>, [">= 0"])
+      s.add_development_dependency(%q<turn>, [">= 0"])
+      s.add_development_dependency(%q<minitest>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<rails>, ["~> 3.0.0"])
@@ -217,6 +258,15 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<debugger>, [">= 0"])
       s.add_dependency(%q<turn>, [">= 0"])
       s.add_dependency(%q<minitest>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<rails>, ["~> 3.0.0"])
+      s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
+      s.add_dependency(%q<factory_girl>, ["~> 1.3.3"])
+      s.add_dependency(%q<debugger>, [">= 0"])
+      s.add_dependency(%q<turn>, [">= 0"])
+      s.add_dependency(%q<minitest>, [">= 0"])
       s.add_dependency(%q<sinatra>, [">= 1.0"])
       s.add_dependency(%q<json>, ["~> 1.4.6"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -251,6 +301,15 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<debugger>, [">= 0"])
     s.add_dependency(%q<turn>, [">= 0"])
     s.add_dependency(%q<minitest>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<rails>, ["~> 3.0.0"])
+    s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
+    s.add_dependency(%q<factory_girl>, ["~> 1.3.3"])
+    s.add_dependency(%q<debugger>, [">= 0"])
+    s.add_dependency(%q<turn>, [">= 0"])
+    s.add_dependency(%q<minitest>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<rails>, ["~> 3.0.0"])
