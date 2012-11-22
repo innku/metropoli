@@ -2,7 +2,13 @@ ActiveRecord::Migration.verbose = false
 ActiveRecord::Base.establish_connection :adapter => "sqlite3", :database => ":memory:"
 
 # Run migrations from templates
-ActiveRecord::Migrator.migrate("#{File.dirname __FILE__}/../../lib/generators/metropoli/install/templates/migrate")
+require("#{File.dirname __FILE__}/../../lib/generators/metropoli/install/templates/migrate/create_metropoli_cities")
+require("#{File.dirname __FILE__}/../../lib/generators/metropoli/install/templates/migrate/create_metropoli_states")
+require("#{File.dirname __FILE__}/../../lib/generators/metropoli/install/templates/migrate/create_metropoli_countries")
+
+CreateMetropoliCities.up
+CreateMetropoliStates.up
+CreateMetropoliCountries.up
 
 ActiveRecord::Schema.define(:version => 4) do
   create_table :users do |t|

@@ -3,7 +3,6 @@ require 'helper'
 class TestState < ActiveSupport::TestCase
   
   def setup
-    nle = Factory(:state)
     jal = Factory(:state, :name => 'Nueva villa')
   end
   

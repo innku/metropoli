@@ -4,7 +4,7 @@ class TestMetropoliFor < ActiveSupport::TestCase
   
   def setup
     @user_class = User
-    @mty = Factory(:city)
+    @mty = Metropoli::CityModel.find_by_name('Monterrey')
     @mty_similar = Factory(:city, :name => 'Monte carlo')
   end
   
