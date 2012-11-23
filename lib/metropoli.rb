@@ -32,6 +32,7 @@ module Metropoli
     require 'metropoli/associations'
     require 'metropoli/engine' 
     require 'metropoli/api/api'
+    require 'metropoli/autocompleteable'
   end
   
 end

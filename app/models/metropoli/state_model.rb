@@ -5,6 +5,7 @@ module Metropoli
     has_many        :cities,  :class_name => Metropoli.city_class, :foreign_key => :state_id
     extend StatementHelper
     extend ConfigurationHelper
+    include Autocompleteable
     
     def self.autocomplete(string='')
       string ||= ''
@@ -36,11 +37,5 @@ module Metropoli
     def to_s
       "#{self.name}, #{self.country.name}"
     end
-    
-    def as_json(opts={})
-      opts||={}
-      super(opts.merge({:only => [:id], :methods => [:to_s]}))
-    end
-    
   end
 end

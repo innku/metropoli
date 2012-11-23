@@ -3,6 +3,7 @@ module Metropoli
     set_table_name  :cities
     extend StatementHelper
     extend ConfigurationHelper
+    include Autocompleteable
     
     belongs_to      :state,   :class_name => Metropoli.state_class
     delegate        :country, :to => :state
@@ -49,11 +50,5 @@ module Metropoli
     def to_s
       "#{self.name}, #{self.state.name}, #{self.country.abbr}"
     end
-    
-    def as_json(opts={})
-      opts ||={}
-      super(opts.merge({ :only => [:id], :methods => [:to_s] }))
-    end
-  
   end
 end

@@ -2,6 +2,7 @@ module Metropoli
   class CountryModel < ActiveRecord::Base
     extend StatementHelper
     extend ConfigurationHelper
+    include Autocompleteable
     set_table_name  :countries
     
     has_many        :states, :class_name => Metropoli.state_class, :foreign_key => :country_id
@@ -25,11 +26,5 @@ module Metropoli
     def to_s
       "#{self.name}"
     end
-    
-    def as_json(opts={})
-      opts||={}
-      super(opts.merge({:only => [:id], :methods => [:to_s]}))
-    end
-  
   end
 end
