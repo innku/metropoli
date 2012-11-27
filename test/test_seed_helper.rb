@@ -14,28 +14,22 @@ class TestSeedHelper < Test::Unit::TestCase
       
     should 'save a country' do
       assert_equal 2, CountryModel.count
-      assert_equal 'Mexico', @country.name
-      assert_equal "Mexican Republic, United Mexican States, Mexico, Estados Unidos Mexicanos, Méjico, República Mejicana, el país azteca, Nueva España, México", @country.alternate_names 
+      assert_equal 'Bolivia', @country.name
     end
 
     should 'save states' do
-      assert_equal 41, StateModel.count
-      assert_equal 32, @country.states.size
+      assert_equal 4, StateModel.count
+      assert_equal 2, @country.states.size
     end
 
     should 'set fields for state' do
-      assert_equal 'Yucatán', @state.name
-      assert_equal 'Yucatán', @state.alternate_names
-      assert_equal 'Yucatan', @state.ascii_name
-      assert_equal 72,        @state.cities.count
+      assert_equal 'Cochabamba', @state.name
+      assert_equal 2, @state.cities.count
     end
 
     should 'set fields for city' do
       city = @state.cities.first
-      assert_equal 'Valladolid', city.name
-      assert_equal 'Valladolid', city.ascii_name
-      assert_equal 39663,        city.population
-      assert_nil city.alternate_names
+      assert_equal 'Cochabamba', city.name
     end
   end
 end

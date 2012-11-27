@@ -1,12 +1,6 @@
 require 'helper'
 
 class TestCity < ActiveSupport::TestCase
-  
-  def setup
-    mty = Factory(:city)
-    sgo = Factory(:city, :name => 'Santiago')
-  end
-  
   test 'like method should find cities by name' do
     assert_equal Metropoli::CityModel.like('Monterrey').count, 1
   end
