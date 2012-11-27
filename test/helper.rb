@@ -6,7 +6,7 @@ require 'factories'
 require 'shoulda'
 require_relative "test_app/config/environment"
 require "rails/test_help"
-require 'turn/autorun'
+# require 'turn/autorun'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
