@@ -3,7 +3,7 @@ module Metropoli
     extend StatementHelper
     extend ConfigurationHelper
     include Autocompleteable
-    set_table_name  :countries
+    self.table_name = :countries
     
     has_many        :states, :class_name => Metropoli.state_class, :foreign_key => :country_id
     

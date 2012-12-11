@@ -1,6 +1,6 @@
 module Metropoli
   class CityModel < ActiveRecord::Base    
-    set_table_name  :cities
+    self.table_name = :cities
     extend StatementHelper
     extend ConfigurationHelper
     include Autocompleteable

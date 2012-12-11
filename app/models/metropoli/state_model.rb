@@ -1,6 +1,6 @@
 module Metropoli
   class StateModel < ActiveRecord::Base
-    set_table_name  :states
+    self.table_name = :states
     belongs_to      :country, :class_name => Metropoli.country_class
     has_many        :cities,  :class_name => Metropoli.city_class, :foreign_key => :state_id
     extend StatementHelper
