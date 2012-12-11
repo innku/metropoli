@@ -21,10 +21,10 @@ module Metropoli
       self.belongs_to relation_name.to_sym, :class_name => relation_class_name
 
       define_method "#{relation_name}_name=" do |attr_value|
-        write_attribute "#{relation_name}_name", attr_value
-        write_attribute relation_collector, (relation_class.with_values(attr_value) || [])
-        if read_attribute(relation_collector).size == 1
-          send "#{relation_name}=", read_attribute(relation_collector).first
+	      instance_variable_set "@#{relation_name}_name",  attr_value
+        instance_variable_set "@#{relation_collector}", (relation_class.with_values(attr_value) || [])
+        if instance_variable_get("@#{relation_collector}").size == 1
+          send "#{relation_name}=", instance_variable_get("@#{relation_collector}").first
         else
           send "#{relation_name}=", nil
         end
@@ -32,7 +32,7 @@ module Metropoli
 
       define_method "#{relation_name}_name" do
         metropoli_attribute = send(relation_name)
-        return read_attribute("#{relation_name}_name") if read_attribute("#{relation_name}_name")
+        return instance_variable_get "@#{relation_name}_name" if instance_variable_get "@#{relation_name}_name"
         return metropoli_attribute.to_s if metropoli_attribute
       end
       
