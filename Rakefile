@@ -2,7 +2,7 @@
 
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rdoc/task'
 
 desc 'Run Metropoli unit tests.'
 Rake::TestTask.new(:test) do |test|
