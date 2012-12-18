@@ -1,0 +1,13 @@
+<h2>Metropoli tests</h2>
+
+<% form_tag 'home' do %>
+  <p>
+    <%= label_tag 'City' %>: <%= text_field_tag 'city', '', :class => 'city_autocomplete' %>
+  </p>
+  <p>
+    <%= label_tag 'State' %>: <%= text_field_tag 'state','',  :class => 'state_autocomplete' %>
+  </p>
+  <p>
+    <%= label_tag 'Country' %>: <%= text_field_tag 'country','',  :class => 'country_autocomplete' %>
+  </p>
+<% end %>
